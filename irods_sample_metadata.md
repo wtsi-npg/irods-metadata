@@ -28,7 +28,7 @@ These metadata are attached to each iRODS data object that represents a biologic
 | dcterms:title	| Genotyping project title	| Illumina Infinium LIMS	| String	|  
 | beadchip	| Unique Beadchip number	| Illumina Infinium LIMS	| Integer	|  
 | beadchip_design	| Beadchip chip design name	| Illumins Infinium LIMS	| String	|  
-| beadchip_section	| Beadchip section row/column|	| Illumina Infinium LIMS	| String	|  
+| beadchip_section	| Beadchip section row/column	| Illumina Infinium LIMS	| String	|  
 | 	|	|	| 	|
 | md5	| MD5 checksum of data	| Publisher	| String	|  
 | type	| Data type/format	| Publisher	| String e.g. gtc, idat	|  
