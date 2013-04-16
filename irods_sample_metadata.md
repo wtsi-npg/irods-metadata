@@ -1,7 +1,7 @@
 Title:   iRODS Sample-level metadata
 Author:  Keith James
 Date:    Tue 16 Apr 2013
-Version: 1.0
+Version: 1.1
 Comment: This document describes sample-level metadata i.e. metadata on material related to individual biological samples
 
 ## iRODS sample-level metadata ##
@@ -27,13 +27,15 @@ These metadata are attached to each iRODS data object that represents a biologic
 | dcterms:identifier	| Various	| Various	| Variable [^reiterated]	|  
 | dcterms:title	| Genotyping project title	| Illumina Infinium LIMS	| String	|  
 | beadchip	| Unique Beadchip number	| Illumina Infinium LIMS	| Integer	|  
-|	|	|	|	|  
+| beadchip_design	| Beadchip chip design name	| Illumins Infinium LIMS	| String	|  
+| beadchip_section	| Beadchip section row/column|	| Illumina Infinium LIMS	| String	|  
+| 	|	|	| 	|
 | md5	| MD5 checksum of data	| Publisher	| String	|  
 | type	| Data type/format	| Publisher	| String e.g. gtc, idat	|  
 
 [^consent]: 1=consented, 0=unconsented, missing=unconsented
 
-[^reiterated]: Sample identifiers mentioned in this table may be reiterated under this key
+[^reiterated]: Sample identifiers mentioned elsewhere in this table may be reiterated under this key
 
 Definitions of the domain and range of dcterms metadata may be found at the 
 [Dublin Core website](http://dublincore.org/documents/dcmi-terms/)
