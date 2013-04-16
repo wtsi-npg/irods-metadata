@@ -6,12 +6,12 @@ Comment: This document describes sample-level metadata i.e. metadata on material
 
 ## iRODS sample-level metadata ##
 
-These metadata are attached to each iRODS data object that represents a biological sample. 
+These metadata are attached to each iRODS data object that represents a biological sample.
 
 ## Metadata keys and values ##
 
 |Tag	| Value	| Value source	| Value type	|  
-| :----------------------:	| :--------------------------:	| :----------------------------------:	| :-------------------------------------------------------:	|  
+| :----------------------	| :--------------------------	| :----------------------------------	| :-------------------------------------------------------	|  
 | sample	| Sanger sample name	| S2 current_samples.name	| String	|  
 | sample_id	| Sanger sample ID	| S2 current_samples.internal_id	| Integer	|  
 | sample_common_name	| Sample common name	| S2 current_samples.common_name	| String	|  
@@ -31,5 +31,9 @@ These metadata are attached to each iRODS data object that represents a biologic
 | md5	| MD5 checksum of data	| Publisher	| String	|  
 | type	| Data type/format	| Publisher	| String e.g. gtc, idat	|  
 
-[^consent] 1=consented, 0=unconsented, missing=unconsented
-[^reiterated] Sample identifiers mentioned in this table may be reiterated under this key
+[^consent]: 1=consented, 0=unconsented, missing=unconsented
+
+[^reiterated]: Sample identifiers mentioned in this table may be reiterated under this key
+
+Definitions of the domain and range of dcterms metadata may be found at the 
+[Dublin Core website](http://dublincore.org/documents/dcmi-terms/)
