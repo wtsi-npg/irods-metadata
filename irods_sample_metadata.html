@@ -36,51 +36,123 @@
 <tbody>
 <tr>
 	<td style="text-align:left;">sample</td>
-	<td style="text-align:left;">Sanger sample name</td>
-	<td style="text-align:left;">S2 current_samples.name</td>
+	<td style="text-align:left;">WTSI sample name</td>
+	<td style="text-align:left;">SS current_samples.name</td>
 	<td style="text-align:left;">String</td>
 </tr>
 <tr>
 	<td style="text-align:left;">sample_id</td>
-	<td style="text-align:left;">Sanger sample ID</td>
-	<td style="text-align:left;">S2 current_samples.internal_id</td>
+	<td style="text-align:left;">WTSI sample ID</td>
+	<td style="text-align:left;">SS current_samples.internal_id</td>
+	<td style="text-align:left;">Integer</td>
+</tr>
+<tr>
+	<td style="text-align:left;">sample_cohort</td>
+	<td style="text-align:left;">WTSI cohort name</td>
+	<td style="text-align:left;">SS current_samples.cohort</td>
+	<td style="text-align:left;">String</td>
+</tr>
+<tr>
+	<td style="text-align:left;">sample_control</td>
+	<td style="text-align:left;">WTSI sample control flag</td>
+	<td style="text-align:left;">SS current_samples.control</td>
 	<td style="text-align:left;">Integer</td>
 </tr>
 <tr>
 	<td style="text-align:left;">sample_common_name</td>
-	<td style="text-align:left;">Sample common name</td>
-	<td style="text-align:left;">S2 current_samples.common_name</td>
+	<td style="text-align:left;">WTSI common name</td>
+	<td style="text-align:left;">SS current_samples.common_name</td>
 	<td style="text-align:left;">String</td>
 </tr>
 <tr>
 	<td style="text-align:left;">sample_accession_number</td>
 	<td style="text-align:left;">Sample accession number</td>
-	<td style="text-align:left;">S2 current_samples.accession number</td>
+	<td style="text-align:left;">SS current_samples.accession number</td>
 	<td style="text-align:left;">String</td>
 </tr>
 <tr>
 	<td style="text-align:left;">sample_consent</td>
 	<td style="text-align:left;">Consent exists</td>
-	<td style="text-align:left;">S2 current_samples.consent_withdrawn</td>
+	<td style="text-align:left;">SS current_samples.consent_withdrawn</td>
 	<td style="text-align:left;">Integer <a href="#fn:1" id="fnref:1" title="see footnote" class="footnote">[1]</a></td>
 </tr>
 <tr>
 	<td style="text-align:left;">study_id</td>
-	<td style="text-align:left;">S2 study ID</td>
-	<td style="text-align:left;">S2 current_studies.internal_id</td>
+	<td style="text-align:left;">WTSI study ID</td>
+	<td style="text-align:left;">SS current_studies.internal_id</td>
 	<td style="text-align:left;">Integer</td>
 </tr>
 <tr>
 	<td style="text-align:left;">study_title</td>
-	<td style="text-align:left;">S2 study title</td>
-	<td style="text-align:left;">S2 current_studies.study_title</td>
+	<td style="text-align:left;">WTSI study title</td>
+	<td style="text-align:left;">SS current_studies.study_title</td>
 	<td style="text-align:left;">String</td>
 </tr>
 <tr>
-	<td style="text-align:left;"></td>
-	<td style="text-align:left;"></td>
-	<td style="text-align:left;"></td>
-	<td style="text-align:left;"></td>
+	<td style="text-align:left;">md5</td>
+	<td style="text-align:left;">MD5 checksum of data</td>
+	<td style="text-align:left;">Publisher</td>
+	<td style="text-align:left;">String</td>
+</tr>
+<tr>
+	<td style="text-align:left;">type</td>
+	<td style="text-align:left;">Data type/format</td>
+	<td style="text-align:left;">Publisher</td>
+	<td style="text-align:left;">String e.g. gtc, idat</td>
+</tr>
+<tr>
+	<td style="text-align:left;">beadchip</td>
+	<td style="text-align:left;">Unique Beadchip number</td>
+	<td style="text-align:left;">Illumina Infinium LIMS</td>
+	<td style="text-align:left;">Integer</td>
+</tr>
+<tr>
+	<td style="text-align:left;">beadchip_design</td>
+	<td style="text-align:left;">Beadchip chip design name</td>
+	<td style="text-align:left;">Illumins Infinium LIMS</td>
+	<td style="text-align:left;">String</td>
+</tr>
+<tr>
+	<td style="text-align:left;">beadchip_section</td>
+	<td style="text-align:left;">Beadchip section row/column</td>
+	<td style="text-align:left;">Illumina Infinium LIMS</td>
+	<td style="text-align:left;">String</td>
+</tr>
+<tr>
+	<td style="text-align:left;">infinium_plate</td>
+	<td style="text-align:left;">Infinium plate barcode</td>
+	<td style="text-align:left;">SS current_samples.infinium_barcode</td>
+	<td style="text-align:left;">String</td>
+</tr>
+<tr>
+	<td style="text-align:left;">infinium_well</td>
+	<td style="text-align:left;">Infinium plate well address</td>
+	<td style="text-align:left;">SS well.map</td>
+	<td style="text-align:left;">String <a href="#fn:2" id="fnref:2" title="see footnote" class="footnote">[2]</a></td>
+</tr>
+<tr>
+	<td style="text-align:left;">sequenom_plate</td>
+	<td style="text-align:left;">Sequenom plate ID</td>
+	<td style="text-align:left;">Sequenom MSPEC LIMS</td>
+	<td style="text-align:left;">String</td>
+</tr>
+<tr>
+	<td style="text-align:left;">sequenom_well</td>
+	<td style="text-align:left;">Sequenom plate well address</td>
+	<td style="text-align:left;">Sequenom MSPEC LIMS</td>
+	<td style="text-align:left;">String <a href="#fn:3" id="fnref:3" title="see footnote" class="footnote">[3]</a></td>
+</tr>
+<tr>
+	<td style="text-align:left;">fluidigm_plate</td>
+	<td style="text-align:left;">Fluidigm plate ID</td>
+	<td style="text-align:left;">SS current_samples.fluidigm_barcode</td>
+	<td style="text-align:left;">String</td>
+</tr>
+<tr>
+	<td style="text-align:left;">fluidigm_well</td>
+	<td style="text-align:left;">Fluidigm well address</td>
+	<td style="text-align:left;">SS well.map</td>
+	<td style="text-align:left;">String <a href="#fn:3" title="see footnote" class="footnote">[3]</a></td>
 </tr>
 <tr>
 	<td style="text-align:left;">dcterms:creator</td>
@@ -110,52 +182,23 @@
 	<td style="text-align:left;">dcterms:identifier</td>
 	<td style="text-align:left;">Various</td>
 	<td style="text-align:left;">Various</td>
-	<td style="text-align:left;">Variable <a href="#fn:2" id="fnref:2" title="see footnote" class="footnote">[2]</a></td>
+	<td style="text-align:left;">Variable <a href="#fn:4" id="fnref:4" title="see footnote" class="footnote">[4]</a></td>
 </tr>
 <tr>
 	<td style="text-align:left;">dcterms:title</td>
 	<td style="text-align:left;">Genotyping project title</td>
 	<td style="text-align:left;">Illumina Infinium LIMS</td>
-	<td style="text-align:left;">String</td>
+	<td style="text-align:left;">String <a href="#fn:4" title="see footnote" class="footnote">[4]</a></td>
 </tr>
 <tr>
-	<td style="text-align:left;">beadchip</td>
-	<td style="text-align:left;">Unique Beadchip number</td>
-	<td style="text-align:left;">Illumina Infinium LIMS</td>
-	<td style="text-align:left;">Integer</td>
-</tr>
-<tr>
-	<td style="text-align:left;">beadchip_design</td>
-	<td style="text-align:left;">Beadchip chip design name</td>
-	<td style="text-align:left;">Illumins Infinium LIMS</td>
-	<td style="text-align:left;">String</td>
-</tr>
-<tr>
-	<td style="text-align:left;">beadchip_section</td>
-	<td style="text-align:left;">Beadchip section row/column</td>
-	<td style="text-align:left;">Illumina Infinium LIMS</td>
-	<td style="text-align:left;">String</td>
-</tr>
-<tr>
-	<td style="text-align:left;"></td>
-	<td style="text-align:left;"></td>
-	<td style="text-align:left;"></td>
-	<td style="text-align:left;"></td>
-</tr>
-<tr>
-	<td style="text-align:left;">md5</td>
-	<td style="text-align:left;">MD5 checksum of data</td>
-	<td style="text-align:left;">Publisher</td>
-	<td style="text-align:left;">String</td>
-</tr>
-<tr>
-	<td style="text-align:left;">type</td>
-	<td style="text-align:left;">Data type/format</td>
-	<td style="text-align:left;">Publisher</td>
-	<td style="text-align:left;">String e.g. gtc, idat</td>
+	<td style="text-align:left;">dcterms:audience</td>
+	<td style="text-align:left;">Various</td>
+	<td style="text-align:left;">Data audience (machine or person)</td>
+	<td style="text-align:left;">URI</td>
 </tr>
 </tbody>
 </table>
+
 <p>Definitions of the domain and range of dcterms metadata may be found at the
 <a href="http://dublincore.org/documents/dcmi-terms/">Dublin Core website</a></p>
 
@@ -164,11 +207,19 @@
 <ol>
 
 <li id="fn:1">
-<p>1=consented, 0=unconsented, missing=unconsented <a href="#fnref:1" title="return to article" class="reversefootnote">&#160;&#8617;</a></p>
+<p>1=consented, 0=unconsented, missing=unconsented. <a href="#fnref:1" title="return to article" class="reversefootnote">&#160;&#8617;</a></p>
 </li>
 
 <li id="fn:2">
-<p>Sample identifiers mentioned elsewhere in this table may be reiterated under this key <a href="#fnref:2" title="return to article" class="reversefootnote">&#160;&#8617;</a></p>
+<p>unpadded_plate_address <a href="#fnref:2" title="return to article" class="reversefootnote">&#160;&#8617;</a></p>
+</li>
+
+<li id="fn:3">
+<p>Padded address of the form &#8216;A01&#8217;, &#8216;H12&#8217;. <a href="#fnref:3" title="return to article" class="reversefootnote">&#160;&#8617;</a></p>
+</li>
+
+<li id="fn:4">
+<p>Sample identifiers mentioned elsewhere in this table may be reiterated under this key. <a href="#fnref:4" title="return to article" class="reversefootnote">&#160;&#8617;</a></p>
 </li>
 
 </ol>
