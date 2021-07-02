@@ -1,0 +1,189 @@
+#+title: iRODS Sample Metadata
+#+author:Keith James <kdj@sanger.ac.uk>
+
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+
+* Sample metadata used in Wellcome Sanger Institute iRODS
+
+  These metadata may be associated with any iRODS data object that
+  contains information derived from an identifiable biological
+  sample.
+
+** Definition of a Sample
+
+   We define "sample" as a discrete item of biomaterial. In cases
+   where multiple samples may be taken from the same individual
+   (e.g. a human donor), these are defined as distinct and unrelated
+   i.e. they have different sample identifiers.
+
+   Where an iRODS data object contains data relating to multiple
+   samples, it may have multiple sample identifiers in its metadata.
+
+** Types of metadata
+
+*** Primary metadata
+
+    Metadata that cannot be changed without becoming invalid we define
+    as "Primary". These values are often intrinsic to raw or early
+    processed data and may be obtained directly from there. Example
+    primary metadata are:
+
+    - The instrument used to process the material e.g. a DNA sequencer
+      identifier, serial number or model.
+    - The flowcell or other container used to hold the
+      material, e.g. a DNA sequencing flowcell identifier, optical
+      mapping chip barcode or plate barcode.
+    - The location of material within a container when processed,
+      e.g. a flowcell lane or well address within a plate.
+    - Analysis kit identifiers.
+
+    Often these values are obtained by parsing data files created by
+    the instrument, or by querying a database supplied with the
+    instrument by the manufacturer.
+
+    Also considered primary metadata are some types of process
+    information that are not expected to change. Example process
+    information:
+
+    - The date and time of deposition into iRODS.
+    - The data checksum at the time of deposition.
+    - The identity of the person or process depositing the data.
+    
+*** Secondary metadata
+
+    Metadata that can change without becoming invalid we define as
+    "Secondary". These values are usually obtained from Laboratory
+    Information Management Systems (LIMS) and reflect the current
+    state of knowledge about origin of the data.  Example secondary
+    metadata are:
+
+    - Sample identifiers.
+    - Sample grouping information e.g. cohort.
+    - Taxonomic information.
+    - Patient consent flags.
+
+    Metadata in this category can change for legitimate reasons, such
+    as:
+
+    - A species taxonomy is reclassified after data capture.
+    - Patient consent is withdrawn.
+    - A laboratory or LIMS tracking error is corrected.
+
+** Metadata definitions
+
+   We have adopted [[https://www.dublincore.org/specifications/dublin-core/dcmi-terms/][Dublin Core]] standard metadata where we are able to
+   do so. For reasons of backward compatibility, our metadata do not
+   use [[http://obofoundry.org/ontology/obi.html][OBI]].
+
+*** Primary metadata
+
+ | Platform | Attribute                  | Type             | Definition                                                 | Source    |
+ |----------+----------------------------+------------------+------------------------------------------------------------+-----------|
+ | NA       | ~dcterms:created~          | ISO8601 datetime | Date file stored in iRODS                                  | App       |
+ | NA       | ~dcterms:creator~          | URI              | Creator (machine or person)                                | App       |
+ | NA       | ~dcterms:publisher~        | URI              | Publisher (machine or person)                              | App       |
+ | NA       | ~dcterms:identifier~       | String           | Identifier                                                 | LIMS      |
+ | NA       | ~dcterms:title~            | String           | Project title                                              | LIMS      |
+ | NA       | ~dcterms:audience~         | URI              | Data audience (machine or person)                          | App       |
+ | NA       | ~type~                     | String           | File type or format                                        | App       |
+ | NA       | ~md5~                      | String           | MD5 checksum of file                                       | App       |
+ | NA       | ~reference~                | String           | Reference genome used in CRAM construction                 | App       |
+ | NA       | ~seqchksum~                | String           | Format-independent sequence data checksum                  | App       |
+ | NA       | ~is_paired_read~           | Integer          | Is paired-end sequencing                                   | App       |
+ | NA       | ~alignment~                | Integer          | Is aligned to a reference                                  | App       |
+ | NA       | ~total_reads~              | Integer          | Total number of reads sequenced                            | App       |
+ | NA       | ~manual_qc~                | Integer          | Has passed manual QC                                       | App       |
+ | Illumina | ~id_run~                   | Integer          | Illumina run ID                                            | App       |
+ | Illumina | ~lane~                     | Integer          | Illumina flowcell lane                                     | App       |
+ | Illumina | ~tag_index~                | Integer          | Illumina multiplexing tag index                            | App       |
+ | Illumina | ~component~                | JSON             | JSON document describing a unit of sequence data [fn:1]    | App       |
+ | Illumina | ~composition~              | JSON             | JSON document describing a mixture of ~component~ s [fn:2] | App       |
+ | ONT      | ~ont:device_id~            | String           | Device ID                                                  | MinKNOW   |
+ | ONT      | ~ont:device_type~          | String           | Device type                                                | MinKNOW   |
+ | ONT      | ~ont:distribution_version~ | String           | Distribution (i.e. software) version                       | MinKNOW   |
+ | ONT      | ~ont:flowcell_id~          | String           | Flowcell ID                                                | MinKNOW   |
+ | ONT      | ~ont:guppy_version~        | String           | Guppy (basecaller) version                                 | MinKNOW   |
+ | ONT      | ~ont:hostname~             | String           | Instrument hostname                                        | MinKNOW   |
+ | ONT      | ~ont:protocol_group_id~    | String           | Protocol group ID                                          | MinKNOW   |
+ | ONT      | ~ont:run_id~               | String           | Run ID                                                     | MinKNOW   |
+ | ONT      | ~ont:sample_id~            | String           | Sample ID supplied by operator                             | App       |
+ | ONT      | ~ont:experiment_name~      | String           | Synonym for Protocol group ID                              | MinKNOW   |
+ | ONT      | ~ont:instrument_slot~      | Integer          | Position of flowcell on instrument                         | App       |
+ | PacBio   | ~cell_index~               | String           | PacBio Cell index                                          | SMRT Link |
+ | PacBio   | ~collection_number~        | String           | PacBio Collection number                                   | SMRT Link |
+ | PacBio   | ~instrument_name~          | String           | PacBio instrument name                                     | SMRT Link |
+ | PacBio   | ~data_level~               | String           | Primary data or secondary (derived/analysis)               | App       |
+ | PacBio   | ~run~                      | String           | PacBio run ID                                              | SMRT Link |
+ | PacBio   | ~well~                     | String           | PacBio sample well                                         | SMRT Link |
+ | PacBio   | ~sample_load_name~         | String           | PacBio sample load name                                    | SMRT Link |
+
+ Key:
+
+   - NA: Not Applicable.
+   - App: Values generated by a software application.
+   - LIMS: Values obtained from LIMS.
+   - MinKNOW: Values obtained from Oxford Nanopore MinKNOW software.
+   - SMRT Link: Values obtained from PacBio SMRT Link server.
+
+*** Secondary metadata
+
+  | Platform | Attribute                  | Type             | Definition                                                      | Source |
+  |----------+----------------------------+------------------+-----------------------------------------------------------------+--------|
+  | NA       | ~dcterms:modified~         | ISO8601 datetime | Date file last modified in iRODS                                | App    |
+  | NA       | ~sample_accession_number~  | String           | Public database sample accession                                | LIMS   |
+  | NA       | ~sample_cohort~            | String           | Cohort from which sample was derived                            | LIMS   |
+  | NA       | ~sample_common_name~       | String           | Species common name for the sample                              | LIMS   |
+  | NA       | ~sample_consent_withdrawn~ | Integer          | Sample consent was withdrawn                                    | LIMS   |
+  | NA       | ~sample_control~           | Integer          | Sample is a control                                             | LIMS   |
+  | NA       | ~sample_donor_id~          | String           | Donor ID for the sample                                         | LIMS   |
+  | NA       | ~sample_id~                | String           | Internal sample ID                                              | LIMS   |
+  | NA       | ~sample~                   | String           | Stable internal sample ID                                       | LIMS   |
+  | NA       | ~sample_public_name~       | String           | Public ID of the sample                                         | LIMS   |
+  | NA       | ~sample_supplier_name~     | String           | Sample ID provided by the researcher responsible for the sample | LIMS   |
+  | NA       | ~study_accession_number~   | String           | Public database study accession                                 | LIMS   |
+  | NA       | ~study_id~                 | String           | Internal study ID                                               | LIMS   |
+  | NA       | ~study_name~               | String           | Free text study name                                            | LIMS   |
+  | NA       | ~study_title~              | String           | Free text study title                                           | LIMS   |
+  | NA       | ~rt_ticket~                | String           | Internal RT (helpdesk) ticket ID                                | SOP    |
+  | Illumina | ~library~                  | String           | Sequencing library name                                         | LIMS   |
+  | Illumina | ~library_id~               | String           | Sequencing library ID                                           | LIMS   |
+  | Illumina | ~library_type~             | String           | Sequencing library type                                         | LIMS   |
+  | Pacbio   | ~pacbio_library_name~      | String           | Sequencing library name                                         | LIMS   |
+
+   Key:
+
+   - NA: Not Applicable.
+   - App: Values generated by a software application.
+   - LIMS: Values obtained from LIMS.
+   - SOP: Values inserted manually, following a Standard Operating Procedure (SOP).
+   - SMRT Link: Values obtained from PacBio SMRT Link server.
+
+* Implementation notes
+
+** Use of standard ontologies and/or controlled vocabularies
+
+   If rebuilding our metadata without regard to backward compatibilty,
+   we would use a standard ontology, if only for interoperability
+   (rather than inference capability).
+
+** Namespaces
+
+   We have adopted a namespace of ~ont~ for Oxford Nanopore Technology
+   (ONT) metadata to prevent naming clashes with existing terms. This
+   is something we probably should have implemented consistently from
+   the outset, for all platforms.
+
+* Footnotes
+
+[fn:1] Example component
+
+#+BEGIN_SRC js
+  {"id_run":38321,"position":2,"tag_index":92}
+#+END_SRC
+
+[fn:2] Example composition (of two components)
+
+#+BEGIN_SRC js
+  {"components":[{"id_run":38321,"position":2,"tag_index":92},[{"id_run":38321,"position":2,"tag_index":93}]}
+#+END_SRC
+
