@@ -5,9 +5,12 @@
 
 * Sample metadata used in Wellcome Sanger Institute iRODS
 
-  These metadata may be associated with any iRODS data object that
-  contains information derived from an identifiable biological
-  sample.
+  These metadata may be associated with any iRODS data object or
+  collection that contains information derived from an identifiable
+  biological sample.
+  
+  They are applied to the entire ~/seq~ zone and have been applied
+  to the legacy ~/archive/GAPI~ area. They are applied by the NPG team.
 
 ** Definition of a Sample
 
