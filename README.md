@@ -1,4 +1,3 @@
-irods-metadata
-==============
+# iRODS metadata
 
-A description of the metadata used in WSI iRODS.
+Documentation for the metadata used in WSI iRODS.
