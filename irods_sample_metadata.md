@@ -12,43 +12,57 @@
 :box:info:Note:This page is automatically generated; any edits will be overwritten:
 
 ###### Repository information
+
 <!-- Include: docs/includes/repo-metadata.md -->
 
 # Sample metadata used in Wellcome Sanger Institute iRODS
 
-These metadata may be associated with any iRODS data object or collection that contains information derived from an identifiable biological sample.
+These metadata may be associated with any iRODS data object or collection that contains
+information derived from an identifiable biological sample.
 
 They are applied to the entire `/seq` zone and have been applied
 to the legacy `/archive/GAPI` area. They are applied by the NPG team.
 
 ## Definition of a Sample
 
-We define "sample" as a discrete item of biomaterial. In cases where multiple samples may be taken from the same individual (e.g. a human donor), these are defined as distinct and unrelated i.e. they have different sample identifiers.
+We define "sample" as a discrete item of biomaterial. In cases where multiple samples
+may be taken from the same individual (e.g. a human donor), these are defined as
+distinct and unrelated i.e. they have different sample identifiers.
 
-Where an iRODS data object contains data relating to multiple samples, it may have multiple sample identifiers in its metadata.
+Where an iRODS data object contains data relating to multiple samples, it may have
+multiple sample identifiers in its metadata.
 
 ## Types of metadata
 
 ### Primary metadata
 
-Metadata that cannot be changed without becoming invalid we define as "Primary". These values are often intrinsic to raw or early processed data and may be obtained directly from there. Example primary metadata are:
+Metadata that cannot be changed without becoming invalid we define as "Primary". These
+values are often intrinsic to raw or early processed data and may be obtained directly
+from there. Example primary metadata are:
 
-- The instrument used to process the material e.g. a DNA sequencer identifier, serial number or model.
-- The flowcell or other container used to hold the material, e.g. a DNA sequencing flowcell identifier, optical mapping chip barcode or plate barcode.
-- The location of material within a container when processed, e.g. a flowcell lane or well address within a plate.
+- The instrument used to process the material e.g. a DNA sequencer identifier, serial
+  number or model.
+- The flowcell or other container used to hold the material, e.g. a DNA sequencing
+  flowcell identifier, optical mapping chip barcode or plate barcode.
+- The location of material within a container when processed, e.g. a flowcell lane or
+  well address within a plate.
 - Analysis kit identifiers.
 
-Often these values are obtained by parsing data files created by the instrument, or by querying a database supplied with the instrument by the manufacturer.
+Often these values are obtained by parsing data files created by the instrument, or by
+querying a database supplied with the instrument by the manufacturer.
 
-Also considered primary metadata are some types of process information that are not expected to change. Example process information:
+Also considered primary metadata are some types of process information that are not
+expected to change. Example process information:
 
 - The date and time of deposition into iRODS.
 - The data checksum at the time of deposition.
 - The identity of the agent depositing the data.
-    
+
 ### Secondary metadata
 
-Metadata that can change without becoming invalid we define as "Secondary". These values are usually obtained from Laboratory Information Management Systems (LIMS) and reflect the current state of knowledge about origin of the data. Example secondary metadata are:
+Metadata that can change without becoming invalid we define as "Secondary". These values
+are usually obtained from Laboratory Information Management Systems (LIMS) and reflect
+the current state of knowledge about origin of the data. Example secondary metadata are:
 
 - Sample identifiers.
 - Sample grouping information e.g. cohort.
@@ -63,7 +77,10 @@ Metadata in this category can change for legitimate reasons, such as:
 
 ## Metadata definition summary
 
-We have adopted [Dublin Core](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/) standard metadata where we are able to do so. For reasons of backward compatibility, our metadata do not use [OBI](http://obofoundry.org/ontology/obi.html).
+We have
+adopted [Dublin Core](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/)
+standard metadata where we are able to do so. For reasons of backward compatibility, our
+metadata do not use [OBI](http://obofoundry.org/ontology/obi.html).
 
 ### Primary metadata
 
@@ -108,47 +125,46 @@ We have adopted [Dublin Core](https://www.dublincore.org/specifications/dublin-c
  | PacBio   | `well`                                          | String           | PacBio sample well                                  | SMRT Link |
  | PacBio   | `sample_load_name`                              | String           | PacBio sample load name                             | SMRT Link |
 
- Key:
+Key:
 
-   - NA: Not Applicable.
-   - App: Values generated by a software application.
-   - LIMS: Values obtained from LIMS.
-   - MinKNOW: Values obtained from Oxford Nanopore MinKNOW software.
-   - SMRT Link: Values obtained from PacBio SMRT Link server.
+- NA: Not Applicable.
+- App: Values generated by a software application.
+- LIMS: Values obtained from LIMS.
+- MinKNOW: Values obtained from Oxford Nanopore MinKNOW software.
+- SMRT Link: Values obtained from PacBio SMRT Link server.
 
 ### Secondary metadata
 
-  | Platform | Attribute                  | Type             | Definition                                                      | Source |
-  |----------|----------------------------|------------------|-----------------------------------------------------------------|--------|
-  | NA       | `dcterms:modified`         | ISO8601 datetime | Date file last modified in iRODS                                | App    |
-  | NA       | `sample_accession_number`  | String           | Public database sample accession                                | LIMS   |
-  | NA       | `sample_cohort`            | String           | Cohort from which sample was derived                            | LIMS   |
-  | NA       | `sample_common_name`       | String           | Species common name for the sample                              | LIMS   |
-  | NA       | `sample_consent_withdrawn` | Integer          | Sample consent was withdrawn                                    | LIMS   |
-  | NA       | `sample_control`           | Integer          | Sample is a control                                             | LIMS   |
-  | NA       | `sample_donor_id`          | String           | Donor ID for the sample                                         | LIMS   |
-  | NA       | `sample_id`                | String           | Internal sample ID                                              | LIMS   |
-  | NA       | `sample`                   | String           | Stable internal sample ID                                       | LIMS   |
-  | NA       | `sample_public_name`       | String           | Public ID of the sample                                         | LIMS   |
-  | NA       | `sample_supplier_name`     | String           | Sample ID provided by the researcher responsible for the sample | LIMS   |
-  | NA       | `study_accession_number`   | String           | Public database study accession                                 | LIMS   |
-  | NA       | `study_id`                 | String           | Internal study ID                                               | LIMS   |
-  | NA       | `study_name`               | String           | Free text study name                                            | LIMS   |
-  | NA       | `study_title`              | String           | Free text study title                                           | LIMS   |
-  | NA       | `rt_ticket`                | String           | Internal RT (helpdesk) ticket ID                                | SOP    |
-  | Illumina | `library`                  | String           | Sequencing library name                                         | LIMS   |
-  | Illumina | `library_id`               | String           | Sequencing library ID                                           | LIMS   |
-  | Illumina | `library_type`             | String           | Sequencing library type                                         | LIMS   |
-  | Pacbio   | `pacbio_library_name`      | String           | Sequencing library name                                         | LIMS   |
+| Platform | Attribute                  | Type             | Definition                                                      | Source |
+|----------|----------------------------|------------------|-----------------------------------------------------------------|--------|
+| NA       | `dcterms:modified`         | ISO8601 datetime | Date file last modified in iRODS                                | App    |
+| NA       | `sample_accession_number`  | String           | Public database sample accession                                | LIMS   |
+| NA       | `sample_cohort`            | String           | Cohort from which sample was derived                            | LIMS   |
+| NA       | `sample_common_name`       | String           | Species common name for the sample                              | LIMS   |
+| NA       | `sample_consent_withdrawn` | Integer          | Sample consent was withdrawn                                    | LIMS   |
+| NA       | `sample_control`           | Integer          | Sample is a control                                             | LIMS   |
+| NA       | `sample_donor_id`          | String           | Donor ID for the sample                                         | LIMS   |
+| NA       | `sample_id`                | String           | Internal sample ID                                              | LIMS   |
+| NA       | `sample`                   | String           | Stable internal sample ID                                       | LIMS   |
+| NA       | `sample_public_name`       | String           | Public ID of the sample                                         | LIMS   |
+| NA       | `sample_supplier_name`     | String           | Sample ID provided by the researcher responsible for the sample | LIMS   |
+| NA       | `study_accession_number`   | String           | Public database study accession                                 | LIMS   |
+| NA       | `study_id`                 | String           | Internal study ID                                               | LIMS   |
+| NA       | `study_name`               | String           | Free text study name                                            | LIMS   |
+| NA       | `study_title`              | String           | Free text study title                                           | LIMS   |
+| NA       | `rt_ticket`                | String           | Internal RT (helpdesk) ticket ID                                | SOP    |
+| Illumina | `library`                  | String           | Sequencing library name                                         | LIMS   |
+| Illumina | `library_id`               | String           | Sequencing library ID                                           | LIMS   |
+| Illumina | `library_type`             | String           | Sequencing library type                                         | LIMS   |
+| PacBio   | `pacbio_library_name`      | String           | Sequencing library name                                         | LIMS   |
 
-   Key:
+Key:
 
-   - NA: Not Applicable.
-   - App: Values generated by a software application.
-   - LIMS: Values obtained from LIMS.
-   - SOP: Values inserted manually, following a Standard Operating Procedure (SOP).
-   - SMRT Link: Values obtained from PacBio SMRT Link server.
-
+- NA: Not Applicable.
+- App: Values generated by a software application.
+- LIMS: Values obtained from LIMS.
+- SOP: Values inserted manually, following a Standard Operating Procedure (SOP).
+- SMRT Link: Values obtained from PacBio SMRT Link server.
 
 ## Metadata definition details
 
@@ -158,23 +174,21 @@ Some more detailed definitions of the metadata are provided below.
 
 ### alignment
 
-This indicates that the CRAM file is aligned against a reference. It
-is calculated by the code uploading the file by inspecting the file
-contents with samtools. The value is 1 if the CRAM header contains an
-SQ record and the file contains reads.
+This indicates that the CRAM file is aligned against a reference. It is calculated
+by the code uploading the file by inspecting the file contents with samtools. The
+value is 1 if the CRAM header contains an SQ record and the file contains reads.
 
 ### component
 
-A record describing the origin of some sequence data.  An
+A record describing the origin of some sequence data. An
 example serialised as JSON:
 
 `{"id_run":38321,"position":2,"tag_index":92}`
 
 ### composition
 
-A record describing the data that were merged into this file,
-consisting os one or more [`component`](#NPGiRODSmetadata-component)s.
-An example serialised as JSON:
+A record describing the data that were merged into this file, consisting os one or
+more [`component`](#NPGiRODSmetadata-component)s. An example serialised as JSON:
 
 `{"components":[{"id_run":38321,"position":2,"tag_index":92},[{"id_run":38321,"position":2,"tag_index":93}]}`
 
@@ -183,26 +197,24 @@ An example serialised as JSON:
 This is standard [Dublin Core metadata in the dcterms
 namespace](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/publisher)
 
-The range of `dcterms:publisher` should be the publishing agent, such
-as a software agent, service account or user.
+The range of `dcterms:publisher` should be the publishing agent, such as a software
+agent, service account or user.
 
 ### id_product
 
-This is an identifier created by taking a digest of the sequence
-components (i.e. instrument runs, positions and tag indexes) in the
-file. It is shared between files that have the same source data,
-whether that be single-source, or merged from multiple runs, lanes or
-tag indexes, but is otherwise unique.
+This is an identifier created by taking a digest of the sequence components (i.e.
+instrument runs, positions and tag indexes) in the file. It is shared between files that
+have the same source data, whether that be single-source, or merged from multiple runs,
+lanes or tag indexes, but is otherwise unique.
 
 ### md5
 
-This is added by NPG to record our expectation of what the MD5
-checksum should be. We calculate a checksum locally before upload and
-set this in the metadata. iRODS calculates its own checksums for each
-replica on the server side. However, we have found it useful in
-practice to retain this independent reference checksum for times when
-we need to diagnose problems. We also retain a history of this AVU, so
-that we can see the timestamps of any times when the file was updated.
+This is added by NPG to record our expectation of what the MD5 checksum should be. We
+calculate a checksum locally before upload and set this in the metadata. iRODS
+calculates its own checksums for each replica on the server side. However, we have found
+it useful in practice to retain this independent reference checksum for times when we
+need to diagnose problems. We also retain a history of this AVU, so that we can see the
+timestamps of any times when the file was updated.
 
 ### seqchksum
 
@@ -214,15 +226,11 @@ which generates a table of checksums (we're using version 2.0.79).
 pipeline](https://github.com/wtsi-npg/npg_irods/blob/master/lib/WTSI/NPG/HTS/Seqchksum.pm)
 creates a the digest from that table
 
-
 ### target
 
-This is an indicator to consumers that it's data of interest to them,
-rather than e.g. internal metrics. It's a convenient filter for users
-to add to a metadata query so that they can filter out the
-uninteresting (to them) parts of the results.
-
-
+This is an indicator to consumers that it's data of interest to them, rather than e.g.
+internal metrics. It's a convenient filter for users to add to a metadata query so that
+they can filter out the uninteresting (to them) parts of the results.
 
 ### Secondary metadata
 
@@ -230,13 +238,11 @@ uninteresting (to them) parts of the results.
 
 #### Use of standard ontologies and/or controlled vocabularies
 
-   If rebuilding our metadata without regard to backward compatibilty,
-   we would use a standard ontology, if only for interoperability
-   (rather than inference capability).
+If rebuilding our metadata without regard to backward compatibilty, we would use a
+standard ontology, if only for interoperability (rather than inference capability).
 
 #### Namespaces
 
-   We have adopted a namespace of `ont` for Oxford Nanopore Technology
-   (ONT) metadata to prevent naming clashes with existing terms. This
-   is something we probably should have implemented consistently from
-   the outset, for all platforms.
+We have adopted a namespace of `ont` for Oxford Nanopore Technology (ONT) metadata
+to prevent naming clashes with existing terms. This is something we probably should
+have implemented consistently from the outset, for all platforms.
