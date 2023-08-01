@@ -103,6 +103,7 @@ We have adopted [Dublin Core](https://www.dublincore.org/specifications/dublin-c
  | PacBio   | `collection_number`                             | String           | PacBio Collection number                            | SMRT Link |
  | PacBio   | `instrument_name`                               | String           | PacBio instrument name                              | SMRT Link |
  | PacBio   | `data_level`                                    | String           | Primary data or secondary (derived/analysis)        | App       |
+ | PacBio   | `plate_number`                                  | Integer          | PacBio plate number (for Revio runs)                | SMRT Link |
  | PacBio   | `run`                                           | String           | PacBio run ID                                       | SMRT Link |
  | PacBio   | `well`                                          | String           | PacBio sample well                                  | SMRT Link |
  | PacBio   | `sample_load_name`                              | String           | PacBio sample load name                             | SMRT Link |
