@@ -82,7 +82,7 @@ We have adopted [Dublin Core](https://www.dublincore.org/specifications/dublin-c
  | NA       | `is_paired_read`                                | Integer          | Is paired-end sequencing                            | App       |
  | NA       | [`alignment`](#NPGiRODSmetadata-alignment)      | Integer          | Is aligned to a reference                           | App       |
  | NA       | `total_reads`                                   | Integer          | Total number of reads sequenced                     | App       |
- | NA       | `manual_qc`                                     | Integer          | Has passed manual QC                                | App       |
+ | NA       | `manual_qc`                                     | Integer          | If defined, the outcome of the QC assessment        | App       |
  | Illumina | `id_run`                                        | Integer          | Illumina run ID                                     | App       |
  | Illumina | `lane`                                          | Integer          | Illumina flowcell lane                              | App       |
  | Illumina | `tag_index`                                     | Integer          | Illumina multiplexing tag index                     | App       |
