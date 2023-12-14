@@ -81,6 +81,7 @@ We have adopted [Dublin Core](https://www.dublincore.org/specifications/dublin-c
  | NA       | [`seqchksum`](#NPGiRODSmetadata-seqchksum)      | String           | Format-independent sequence data checksum           | App       |
  | NA       | `is_paired_read`                                | Integer          | Is paired-end sequencing                            | App       |
  | NA       | [`alignment`](#NPGiRODSmetadata-alignment)      | Integer          | Is aligned to a reference                           | App       |
+ | NA       | [`alignment_filter`]                            | String           | The filter (if any) used to generate this data      | App       |
  | NA       | `total_reads`                                   | Integer          | Total number of reads sequenced                     | App       |
  | NA       | `manual_qc`                                     | Integer          | Has passed manual QC                                | App       |
  | Illumina | `id_run`                                        | Integer          | Illumina run ID                                     | App       |
