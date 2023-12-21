@@ -99,6 +99,7 @@ metadata do not use [OBI](http://obofoundry.org/ontology/obi.html).
  | NA       | [`seqchksum`](#NPGiRODSmetadata-seqchksum)      | String           | Format-independent sequence data checksum           | App       |
  | NA       | `is_paired_read`                                | Integer          | Is paired-end sequencing                            | App       |
  | NA       | [`alignment`](#NPGiRODSmetadata-alignment)      | Integer          | Is aligned to a reference                           | App       |
+ | NA       | [`alignment_filter`]                            | String           | The filter (if any) used to generate this data      | App       |
  | NA       | `total_reads`                                   | Integer          | Total number of reads sequenced                     | App       |
  | NA       | `manual_qc`                                     | Integer          | If defined, the outcome of the QC assessment        | App       |
  | Illumina | `id_run`                                        | Integer          | Illumina run ID                                     | App       |
