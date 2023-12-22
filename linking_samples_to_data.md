@@ -26,7 +26,7 @@ virtualisation, data replication and metadata services:
 - Access control: limits access to data appropriately
 - Data virtualisation: presents multiple storage systems in different physical 
   locations as a single file system.
-- Data replication: automatically maintains replicas of data on different physical 
+- Data replication: automatically maintains replicas of data on different physical
   sites to guard against loss.
 - Metadata: to record the identity and origin of data for discovery and management. 
 
