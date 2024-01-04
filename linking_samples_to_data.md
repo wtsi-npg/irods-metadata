@@ -20,12 +20,13 @@
 # iRODS
 
 [iRODS](https://irods.org) is the main platform the we use at WSI to enable the 
-distribution of core analysis pipeline results to researchers. It provides data 
+distribution of DNAP data products to researchers. It provides access control, data
 virtualisation, data replication and metadata services:
 
+- Access control: limits access to data appropriately
 - Data virtualisation: presents multiple storage systems in different physical 
   locations as a single file system.
-- Date replication: automatically maintains replicas of data on different physical 
+- Data replication: automatically maintains replicas of data on different physical
   sites to guard against loss.
 - Metadata: to record the identity and origin of data for discovery and management. 
 

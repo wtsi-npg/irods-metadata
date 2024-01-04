@@ -19,8 +19,8 @@
 
 This document describes the data files generated for the Illumina sequencing platform.
 It includes details of files created by current and previous generations of instrument
-and analysis pipelines, including file types that are no longer created. Current file
-types are indicated in the table below.
+and analysis pipelines, including file types that are no longer created. Common 
+current file types are indicated in the table below.
 
 ## File naming
 
