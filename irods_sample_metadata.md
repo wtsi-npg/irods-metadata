@@ -100,6 +100,7 @@ metadata do not use [OBI](http://obofoundry.org/ontology/obi.html).
 | NA       | [`alignment`](#NPGiRODSmetadata-alignment)     | Integer          | Is aligned to a reference                          | App       |
 | NA       | [`alignment_filter`]                           | String           | The filter (if any) used to generate this data     | App       |
 | NA       | `total_reads`                                  | Integer          | Total number of reads sequenced                    | App       |
+| NA       | [`md5`](#NPGiRODSmetadata-id_product)          | String           | A unique identifier                                | App       |
 | Illumina | `id_run`                                       | Integer          | Illumina run ID                                    | App       |
 | Illumina | `lane`                                         | Integer          | Illumina flowcell lane                             | App       |
 | Illumina | `tag_index`                                    | Integer          | Illumina multiplexing tag index                    | App       |
@@ -159,7 +160,7 @@ Key:
 | Illumina        | `alt_process`              | String           | Indicates output from some variation of the standard analysis                                                                        | App SOP |
 | Illumina        | `alt_target`               | String           | Analogous to `target` where an `alt_process` has been used                                                                           | App SOP |
 | PacBio          | `pacbio_library_name`      | String           | Sequencing library name                                                                                                              | LIMS    |
-| Illumina PacBio | `manual_qc`                | Integer          | If defined, the outcome of the QC assessment                                                                                         | App     |
+| Illumina PacBio | `manual_qc`                | Integer          | If defined, the outcome of the QC assessment                                                                                         | App SOP |
 | Illumina PacBio | `target`                   | String           | Marker of key data product likely to be of interest to customer: `1` or `library` for initial product or a later library based merge | App     |
 
 Key:
@@ -206,10 +207,18 @@ agent, service account or user.
 
 ### id_product
 
-This is an identifier created by taking a digest of the sequence components (i.e.
-instrument runs, positions and tag indexes) in the file. It is shared between files that
-have the same source data, whether that be single-source, or merged from multiple runs,
-lanes or tag indexes, but is otherwise unique.
+This is a unique identifier derived from a set of platform-specific primary
+identifies for sequencing data. It is shared between files that have the same source
+data, whether that be single-source or merged from multiple sorces.
+
+For Illumina data, see the computation of SHA256 digest for
+[compositions](https://github.com/wtsi-npg/npg_tracking/blob/master/lib/npg_tracking/glossary/composition/serializable.pm)
+
+For PacBio data, a similar digest is produced for a
+[single entity](https://github.com/wtsi-npg/npg_id_generation/blob/master/npg_id_generation/pac_bio.py).
+Generation of a product ID for composite products has not been formalised yet.
+
+For ONT and other platforms the concept of product ID has not been developed yet.
 
 ### md5
 
