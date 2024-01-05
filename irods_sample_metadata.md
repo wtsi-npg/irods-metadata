@@ -84,47 +84,47 @@ metadata do not use [OBI](http://obofoundry.org/ontology/obi.html).
 
 ### Primary metadata
 
-| Platform | Attribute                                      | Type             | Definition                                         | Source    |
-| -------- | ---------------------------------------------- | ---------------- | -------------------------------------------------- | --------- |
-| NA       | `dcterms:created`                              | ISO8601 datetime | Date file stored in iRODS                          | App       |
-| NA       | `dcterms:creator`                              | URI              | Creating agent                                     | App       |
-| NA       | `dcterms:publisher`                            | URI              | Publishing agent                                   | App       |
-| NA       | `dcterms:identifier`                           | String           | Identifier                                         | LIMS      |
-| NA       | `dcterms:title`                                | String           | Project title                                      | LIMS      |
-| NA       | `dcterms:audience`                             | URI              | Data audience (machine or person)                  | App       |
-| NA       | `type`                                         | String           | File type or format                                | App       |
-| NA       | [`md5`](#NPGiRODSmetadata-md5)                 | String           | MD5 checksum of file                               | App       |
-| NA       | [`reference`](#NPGiRODSmetadata-reference)     | String           | Reference genome used in CRAM construction         | App       |
-| NA       | [`seqchksum`](#NPGiRODSmetadata-seqchksum)     | String           | Format-independent sequence data checksum          | App       |
-| NA       | `is_paired_read`                               | Integer          | Is paired-end sequencing                           | App       |
-| NA       | [`alignment`](#NPGiRODSmetadata-alignment)     | Integer          | Is aligned to a reference                          | App       |
-| NA       | [`alignment_filter`]                           | String           | The filter (if any) used to generate this data     | App       |
-| NA       | `total_reads`                                  | Integer          | Total number of reads sequenced                    | App       |
-| NA       | [`md5`](#NPGiRODSmetadata-id_product)          | String           | A unique identifier                                | App       |
-| Illumina | `id_run`                                       | Integer          | Illumina run ID                                    | App       |
-| Illumina | `lane`                                         | Integer          | Illumina flowcell lane                             | App       |
-| Illumina | `tag_index`                                    | Integer          | Illumina multiplexing tag index                    | App       |
-| Illumina | [`component`](#NPGiRODSmetadata-component)     | JSON             | JSON document describing a unit of sequence data   | App       |
-| Illumina | [`composition`](#NPGiRODSmetadata-composition) | JSON             | JSON document describing a mixture of `component`s | App       |
-| ONT      | `ont:device_id`                                | String           | Device ID                                          | MinKNOW   |
-| ONT      | `ont:device_type`                              | String           | Device type                                        | MinKNOW   |
-| ONT      | `ont:distribution_version`                     | String           | Distribution (i.e. software) version               | MinKNOW   |
-| ONT      | `ont:flowcell_id`                              | String           | Flowcell ID                                        | MinKNOW   |
-| ONT      | `ont:guppy_version`                            | String           | Guppy (basecaller) version                         | MinKNOW   |
-| ONT      | `ont:hostname`                                 | String           | Instrument hostname                                | MinKNOW   |
-| ONT      | `ont:protocol_group_id`                        | String           | Protocol group ID                                  | MinKNOW   |
-| ONT      | `ont:run_id`                                   | String           | Run ID                                             | MinKNOW   |
-| ONT      | `ont:sample_id`                                | String           | Sample ID supplied by operator                     | App       |
-| ONT      | `ont:experiment_name`                          | String           | Synonym for Protocol group ID                      | MinKNOW   |
-| ONT      | `ont:instrument_slot`                          | Integer          | Position of flowcell on instrument                 | App       |
-| PacBio   | `cell_index`                                   | String           | PacBio Cell index                                  | SMRT Link |
-| PacBio   | `collection_number`                            | String           | PacBio Collection number                           | SMRT Link |
-| PacBio   | `instrument_name`                              | String           | PacBio instrument name                             | SMRT Link |
-| PacBio   | `data_level`                                   | String           | Primary data or secondary (derived/analysis)       | App       |
-| PacBio   | `plate_number`                                 | Integer          | PacBio plate number (for Revio runs)               | SMRT Link |
-| PacBio   | `run`                                          | String           | PacBio run ID                                      | SMRT Link |
-| PacBio   | `well`                                         | String           | PacBio sample well                                 | SMRT Link |
-| PacBio   | `sample_load_name`                             | String           | PacBio sample load name                            | SMRT Link |
+| Platform        | Attribute                                      | Type             | Definition                                         | Source    |
+| --------------- | ---------------------------------------------- | ---------------- | -------------------------------------------------- | --------- |
+| NA              | `dcterms:created`                              | ISO8601 datetime | Date file stored in iRODS                          | App       |
+| NA              | `dcterms:creator`                              | URI              | Creating agent                                     | App       |
+| NA              | `dcterms:publisher`                            | URI              | Publishing agent                                   | App       |
+| NA              | `dcterms:identifier`                           | String           | Identifier                                         | LIMS      |
+| NA              | `dcterms:title`                                | String           | Project title                                      | LIMS      |
+| NA              | `dcterms:audience`                             | URI              | Data audience (machine or person)                  | App       |
+| NA              | `type`                                         | String           | File type or format                                | App       |
+| NA              | [`md5`](#NPGiRODSmetadata-md5)                 | String           | MD5 checksum of file                               | App       |
+| Illumina PacBio | [`id_product`](#NPGiRODSmetadata-id_product)   | String           | Identifier unique for source sequencing dataset    | App       |
+| NA              | [`reference`](#NPGiRODSmetadata-reference)     | String           | Reference genome used in CRAM construction         | App       |
+| NA              | [`seqchksum`](#NPGiRODSmetadata-seqchksum)     | String           | Format-independent sequence data checksum          | App       |
+| NA              | `is_paired_read`                               | Integer          | Is paired-end sequencing                           | App       |
+| NA              | [`alignment`](#NPGiRODSmetadata-alignment)     | Integer          | Is aligned to a reference                          | App       |
+| NA              | [`alignment_filter`]                           | String           | The filter (if any) used to generate this data     | App       |
+| NA              | `total_reads`                                  | Integer          | Total number of reads sequenced                    | App       |
+| Illumina        | `id_run`                                       | Integer          | Illumina run ID                                    | App       |
+| Illumina        | `lane`                                         | Integer          | Illumina flowcell lane                             | App       |
+| Illumina        | `tag_index`                                    | Integer          | Illumina multiplexing tag index                    | App       |
+| Illumina        | [`component`](#NPGiRODSmetadata-component)     | JSON             | JSON document describing a unit of sequence data   | App       |
+| Illumina        | [`composition`](#NPGiRODSmetadata-composition) | JSON             | JSON document describing a mixture of `component`s | App       |
+| ONT             | `ont:device_id`                                | String           | Device ID                                          | MinKNOW   |
+| ONT             | `ont:device_type`                              | String           | Device type                                        | MinKNOW   |
+| ONT             | `ont:distribution_version`                     | String           | Distribution (i.e. software) version               | MinKNOW   |
+| ONT             | `ont:flowcell_id`                              | String           | Flowcell ID                                        | MinKNOW   |
+| ONT             | `ont:guppy_version`                            | String           | Guppy (basecaller) version                         | MinKNOW   |
+| ONT             | `ont:hostname`                                 | String           | Instrument hostname                                | MinKNOW   |
+| ONT             | `ont:protocol_group_id`                        | String           | Protocol group ID                                  | MinKNOW   |
+| ONT             | `ont:run_id`                                   | String           | Run ID                                             | MinKNOW   |
+| ONT             | `ont:sample_id`                                | String           | Sample ID supplied by operator                     | App       |
+| ONT             | `ont:experiment_name`                          | String           | Synonym for Protocol group ID                      | MinKNOW   |
+| ONT             | `ont:instrument_slot`                          | Integer          | Position of flowcell on instrument                 | App       |
+| PacBio          | `cell_index`                                   | String           | PacBio Cell index                                  | SMRT Link |
+| PacBio          | `collection_number`                            | String           | PacBio Collection number                           | SMRT Link |
+| PacBio          | `instrument_name`                              | String           | PacBio instrument name                             | SMRT Link |
+| PacBio          | `data_level`                                   | String           | Primary data or secondary (derived/analysis)       | App       |
+| PacBio          | `plate_number`                                 | Integer          | PacBio plate number (for Revio runs)               | SMRT Link |
+| PacBio          | `run`                                          | String           | PacBio run ID                                      | SMRT Link |
+| PacBio          | `well`                                         | String           | PacBio sample well                                 | SMRT Link |
+| PacBio          | `sample_load_name`                             | String           | PacBio sample load name                            | SMRT Link |
 
 Key:
 
@@ -207,9 +207,10 @@ agent, service account or user.
 
 ### id_product
 
-This is a unique identifier derived from a set of platform-specific primary
-identifies for sequencing data. It is shared between files that have the same source
-data, whether that be single-source or merged from multiple sorces.
+This is a unique identifier representing the set of source sequencing data. It
+is derived from a set of platform-specific primary identifiers for sequencing
+data. It is shared between files that have the same source data, whether that
+be single-source or merged from multiple sorces.
 
 For Illumina data, see the computation of SHA256 digest for
 [compositions](https://github.com/wtsi-npg/npg_tracking/blob/master/lib/npg_tracking/glossary/composition/serializable.pm)
