@@ -19,7 +19,7 @@
 
 # iRODS
 
-[iRODS](https://irods.org) is the main platform the we use at WSI to enable the 
+[iRODS](https://irods.org) is the main platform the NPG use at WSI to enable the 
 distribution of DNAP data products to researchers. It provides access control, data
 virtualisation, data replication and metadata services:
 
@@ -30,6 +30,33 @@ virtualisation, data replication and metadata services:
   sites to guard against loss.
 - Metadata: to record the identity and origin of data for discovery and management. 
 
+# iRODS locations
+
+Data products from recent platorms are placed in a hierarchy split by manaufacturer closest to the root. i.e.
+
+- `/seq/illumina` for Illumina (sequencing)
+- `/seq/pacbio` for Pacific Biosciences: PacBio (sequencing)
+- `/seq/ont` for Oxford Nanopore Technology: ONT (sequencing)
+- `/seq/fluidigm` for Fluidigm (genotyping)
+- `/seq/elembio` for Element Biosciences: ElemBio (sequencing)
+- `/seq/ultimagen` for Ulitma Genomics: UltimaGen (sequencing) 
+
+## run, further processing and data product hierarchies
+
+For the newest platforms (`ont`, `elembio`, `ultimagen`) we try to reflect/maintain hierarchy of the data as output by the instrument or by the manufacturer's software.
+
+Where possible we try to use only automatically generated metadata in the hierarchies i.e. data which is unlikely to be wrong due to inevitable human errors.
+
+
+## legacy hierarchies
+
+Pre-NovaSeq Illumina instruments have their data stored in a higher and flat hierarchy in `/seq/` e.g.
+- `/seq/48462/48462_1#9.cram`
+- `/seq/48462/RunInfo.xml`
+- `/seq/48462/qc/48462_1#9.ref_match.json`
+
+Illumina Beadarray (Infinium) and Sequenom genotyping platforms have their data stored in `/archive` zone (rather than `/seq`) 
+- `/archive/GAPI/gen/infinium` for Illumina Beadarray: Infinium
 
 # iRODS metadata
 
