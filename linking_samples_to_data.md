@@ -49,15 +49,37 @@ Where possible we try to use only automatically generated metadata in the hierar
 
 Don't expect absolute consistency! We've changed as new platforms have made new demands and as NPG has learnt lessons...
 
-### ONT
-Data is copied directly off instruments into iRODS into `/seq/ont/<instrument_type>/<instrument_name>/<hierarchy_from_instrument>` e.g.
-- `/seq/ont/promethion/PC24B148/ONTRUN-197/TRAC-2-7701/20240219_1444_2E_PAU53948_979fa814/fastq_pass`
-- `/seq/ont/promethion/PC24B148/ONTRUN-197/TRAC-2-7701/20240219_1444_2E_PAU53948_979fa814/pod5_pass`
+### Illumina
+NovaSeq and later instruments have the default NPG processing data products in separate collections where the path describes the lanes and plexs:
+- `/seq/illumina/runs/`_thousands_elements_of_NPG_id_run_`/`_NPG_id_run_`/lane`_flowcell_lane_number(s)_`/plex`_Sequencescape_tag_index_`/` , or
+- if all lanes are merged `/seq/illumina/runs/`_thousands_elements_of_NPG_id_run_`/`_NPG_id_run_`/plex`_Sequencescape_tag_index_`/` 
 
-Offline basecalled and deplexing data goes into _similar_ hierarchies split at the `<instrument_name>` level i.e.
-- `/seq/ont/<instrument_type>/offline-basecalls/<instrument_name>/<hierarchy_from_instrument>`, and
-- `/seq/ont/<instrument_type>/offline-deplexes/<instrument_name>/<hierarchy_from_instrument>`
-e.g. `/seq/ont/promethion/offline-basecalls/PC24B148/ONTRUN-188/TRAC-2-7230/20240103_1539_3G_PAQ63575_f4272350/dorado/7.1.4/sup/simplex/pass` .
+e.g.
+- `/seq/illumina/runs/48/48468/lane1/plex10` per-lane and per-plex
+- `/seq/illumina/runs/48/48461/plex85` all-lanes-merged and per-plex
+- `/seq/illumina/runs/48/48454/lane7-8/plex2` lane-subset-merge, per-plex
+
+If the NPG pipeline is run with alterntive parameters _and_ the result saved to iRODS _as well as_ (rather than replacing) the origin processing output, another "`alt_process`" layer is added e.g. `/seq/illumina/runs/48/48367/lane2/plex10/bowtie2_kraken2_T2T`
+
+Other pipelines output are stored at the same level as `runs/` or within the indiviual run `/seq/illumina/runs/`_thousands_elements_of_NPG_id_run_`/`_NPG_id_run_`/`_analysis_pipeline_`/`:
+- `/seq/illumina/`_analysis_pipeline_`/`_id_for_that_instance_of_pipeline_`/` for (typically single cell) data from multiple runs, or
+- `/seq/illumina/pp/runs/`_per_product_hierarchy_from_above_`/`_analysis_pipeline_`/`_pipeline_version_`/`
+
+e.g.
+- `/seq/illumina/cellranger-arc/cellranger-arc202_count_fd5ca7f373cdfbc381c221b2115ebbe8`
+- `/seq/illumina/pp/runs/48/48445/lane2/plex7/ncov2019_artic_nf/v1.3.0_wsi2.0` 
+- `/seq/illumina/runs/48/48297/cellranger/cellranger720_count_48297_HCA_BSTOP_RNA14593660_GRCh38-2020-A`
+
+### ONT
+Data is copied directly off instruments into iRODS into `/seq/ont/`_instrument_type_`/`_instrument_name_`/`_hierarchy_from_instrument_`/` e.g.
+- `/seq/ont/promethion/PC24B148/ONTRUN-197/TRAC-2-7701/20240219_1444_2E_PAU53948_979fa814/fastq_pass/`
+- `/seq/ont/promethion/PC24B148/ONTRUN-197/TRAC-2-7701/20240219_1444_2E_PAU53948_979fa814/pod5_pass/`
+
+Offline basecalled and deplexing data goes into _similar_ hierarchies split at the `/`_instrument_name_`/` level i.e.
+- `/seq/ont/`_instrument_type_`/offline-basecalls/`_instrument_name_`/`_enhanced_hierarchy_from_instrument_`/` and
+- `/seq/ont/`_instrument_type_`/offline-deplexes/`_instrument_name_`/`_enhanced_hierarchy_from_instrument_`/`
+
+e.g. `/seq/ont/promethion/offline-basecalls/PC24B148/ONTRUN-188/TRAC-2-7230/20240103_1539_3G_PAQ63575_f4272350/dorado/7.1.4/sup/simplex/pass/` .
 
 
 ## legacy hierarchies
