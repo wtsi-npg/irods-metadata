@@ -47,6 +47,18 @@ For the newest platforms (`ont`, `elembio`, `ultimagen`) we try to reflect/maint
 
 Where possible we try to use only automatically generated metadata in the hierarchies i.e. data which is unlikely to be wrong due to inevitable human errors.
 
+Don't expect absolute consistency! We've changed as new platforms have made new demands and as NPG has learnt lessons...
+
+### ONT
+Data is copied directly off instruments into iRODS into `/seq/ont/<instrument_type>/<instrument_name>/<hierarchy_from_instrument>` e.g.
+- `/seq/ont/promethion/PC24B148/ONTRUN-197/TRAC-2-7701/20240219_1444_2E_PAU53948_979fa814/fastq_pass`
+- `/seq/ont/promethion/PC24B148/ONTRUN-197/TRAC-2-7701/20240219_1444_2E_PAU53948_979fa814/pod5_pass`
+
+Offline basecalled and deplexing data goes into _similar_ hierarchies split at the `<instrument_name>` level i.e.
+- `/seq/ont/<instrument_type>/offline-basecalls/<instrument_name>/<hierarchy_from_instrument>`, and
+- `/seq/ont/<instrument_type>/offline-deplexes/<instrument_name>/<hierarchy_from_instrument>`
+e.g. `/seq/ont/promethion/offline-basecalls/PC24B148/ONTRUN-188/TRAC-2-7230/20240103_1539_3G_PAQ63575_f4272350/dorado/7.1.4/sup/simplex/pass` .
+
 
 ## legacy hierarchies
 
