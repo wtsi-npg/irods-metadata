@@ -32,16 +32,16 @@ virtualisation, data replication and metadata services:
 
 # iRODS locations
 
-NPG recommend you find your data in iRODS using metadata and/or the MLWH database when pragmatic.
+NPG recommends you find your data in iRODS using metadata and/or the MLWH database when pragmatic.
 
-Data products from recent platorms are placed in a hierarchy split by manaufacturer closest to the root. i.e.
+Data products from recent platforms are placed in a hierarchy split by manufacturer closest to the root. i.e.
 
 - `/seq/illumina` for Illumina (sequencing)
-- `/seq/pacbio` for Pacific Biosciences: PacBio (sequencing)
-- `/seq/ont` for Oxford Nanopore Technology: ONT (sequencing)
-- `/seq/fluidigm` for Fluidigm (genotyping)
-- `/seq/elembio` for Element Biosciences: ElemBio (sequencing)
-- `/seq/ultimagen` for Ulitma Genomics: UltimaGen (sequencing) 
+- `/seq/pacbio` for _Pacific Biosciences_: _PacBio_ (sequencing)
+- `/seq/ont` for _Oxford Nanopore Technology_: _ONT_ (sequencing)
+- `/seq/fluidigm` for _Fluidigm_ (genotyping)
+- `/seq/elembio` for _Element Biosciences_: _ElemBio_ (sequencing)
+- `/seq/ultimagen` for _Ulitma Genomics_: _UltimaGen_ (sequencing) 
 
 ## run, further processing and data product hierarchies
 
@@ -52,7 +52,7 @@ Where possible we try to use only automatically generated metadata in the hierar
 Don't expect absolute consistency! We've changed as new platforms have made new demands and as NPG has learnt lessons...
 
 ### Illumina
-NovaSeq and later instruments have the default NPG processing data products in separate collections where the path describes the lanes and plexs:
+NovaSeq and later instruments have the default NPG processing data products in separate collections where the path describes the lanes and plexes:
 - `/seq/illumina/runs/`_thousands_elements_of_NPG_id_run_`/`_NPG_id_run_`/lane`_flowcell_lane_number(s)_`/plex`_Sequencescape_tag_index_`/` , or
 - if all lanes are merged `/seq/illumina/runs/`_thousands_elements_of_NPG_id_run_`/`_NPG_id_run_`/plex`_Sequencescape_tag_index_`/` 
 
@@ -97,7 +97,7 @@ e.g. `/seq/ont/promethion/offline-basecalls/PC24B148/ONTRUN-188/TRAC-2-7230/2024
 
 ### Fluidigm genotyping
 Is stored in
-- `/seq/fluidigm/`_plate_hash_triple_`/`_plate_id_`/`_well_hash_triple`/`
+- `/seq/fluidigm/`_plate_hash_triplet_`/`_plate_id_`/`_well_hash_triplet`/`
 
 e.g.
 - `/seq/fluidigm/ff/d7/37/1662192080/e8/a9/9f/`
