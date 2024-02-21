@@ -36,7 +36,7 @@ NPG recommends you find your data in iRODS using metadata and/or the MLWH databa
 
 Data products from recent platforms are placed in a hierarchy split by manufacturer closest to the root. i.e.
 
-- `/seq/illumina` for Illumina (sequencing)
+- `/seq/illumina` for _Illumina_ (sequencing)
 - `/seq/pacbio` for _Pacific Biosciences_: _PacBio_ (sequencing)
 - `/seq/ont` for _Oxford Nanopore Technology_: _ONT_ (sequencing)
 - `/seq/fluidigm` for _Fluidigm_ (genotyping)
