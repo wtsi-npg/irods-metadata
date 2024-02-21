@@ -32,6 +32,8 @@ virtualisation, data replication and metadata services:
 
 # iRODS locations
 
+NPG recommend you find your data in iRODS using metadata and/or the MLWH database when pragmatic.
+
 Data products from recent platorms are placed in a hierarchy split by manaufacturer closest to the root. i.e.
 
 - `/seq/illumina` for Illumina (sequencing)
@@ -55,20 +57,32 @@ NovaSeq and later instruments have the default NPG processing data products in s
 - if all lanes are merged `/seq/illumina/runs/`_thousands_elements_of_NPG_id_run_`/`_NPG_id_run_`/plex`_Sequencescape_tag_index_`/` 
 
 e.g.
-- `/seq/illumina/runs/48/48468/lane1/plex10` per-lane and per-plex
-- `/seq/illumina/runs/48/48461/plex85` all-lanes-merged and per-plex
-- `/seq/illumina/runs/48/48454/lane7-8/plex2` lane-subset-merge, per-plex
+- `/seq/illumina/runs/48/48468/lane1/plex10/` per-lane and per-plex
+- `/seq/illumina/runs/48/48461/plex85/` all-lanes-merged and per-plex
+- `/seq/illumina/runs/48/48454/lane7-8/plex2/` lane-subset-merge, per-plex
 
-If the NPG pipeline is run with alterntive parameters _and_ the result saved to iRODS _as well as_ (rather than replacing) the origin processing output, another "`alt_process`" layer is added e.g. `/seq/illumina/runs/48/48367/lane2/plex10/bowtie2_kraken2_T2T`
+If the NPG pipeline is run with alterntive parameters _and_ the result saved to iRODS _as well as_ (rather than replacing) the origin processing output, another "`alt_process`" layer is added e.g. `/seq/illumina/runs/48/48367/lane2/plex10/bowtie2_kraken2_T2T/`
 
-Other pipelines output are stored at the same level as `runs/` or within the indiviual run `/seq/illumina/runs/`_thousands_elements_of_NPG_id_run_`/`_NPG_id_run_`/`_analysis_pipeline_`/`:
-- `/seq/illumina/`_analysis_pipeline_`/`_id_for_that_instance_of_pipeline_`/` for (typically single cell) data from multiple runs, or
+Other pipelines output are stored at the same level as `runs/` 
+- `/seq/illumina/`_analysis_pipeline_`/`_id_for_that_instance_of_pipeline_`/` for (typically single cell) data from multiple runs,
+
+or in a per data product, per analysis pipeline and version hierarchy:
 - `/seq/illumina/pp/runs/`_per_product_hierarchy_from_above_`/`_analysis_pipeline_`/`_pipeline_version_`/`
 
+or within the indiviual run 
+- `/seq/illumina/runs/`_thousands_elements_of_NPG_id_run_`/`_NPG_id_run_`/`_analysis_pipeline_`/`:
+
 e.g.
-- `/seq/illumina/cellranger-arc/cellranger-arc202_count_fd5ca7f373cdfbc381c221b2115ebbe8`
-- `/seq/illumina/pp/runs/48/48445/lane2/plex7/ncov2019_artic_nf/v1.3.0_wsi2.0` 
-- `/seq/illumina/runs/48/48297/cellranger/cellranger720_count_48297_HCA_BSTOP_RNA14593660_GRCh38-2020-A`
+- `/seq/illumina/cellranger-arc/cellranger-arc202_count_fd5ca7f373cdfbc381c221b2115ebbe8/`
+- `/seq/illumina/pp/runs/48/48445/lane2/plex7/ncov2019_artic_nf/v1.3.0_wsi2.0/` 
+- `/seq/illumina/runs/48/48297/cellranger/cellranger720_count_48297_HCA_BSTOP_RNA14593660_GRCh38-2020-A/`
+
+### PacBio
+Is stored in
+- `/seq/pacbio/`_run_identifier_`/`_SMRT_well_`/`
+
+e.g.
+- `/seq/pacbio/r84098_20240216_103750/1_C01/`
 
 ### ONT
 Data is copied directly off instruments into iRODS into `/seq/ont/`_instrument_type_`/`_instrument_name_`/`_hierarchy_from_instrument_`/` e.g.
@@ -81,6 +95,22 @@ Offline basecalled and deplexing data goes into _similar_ hierarchies split at t
 
 e.g. `/seq/ont/promethion/offline-basecalls/PC24B148/ONTRUN-188/TRAC-2-7230/20240103_1539_3G_PAQ63575_f4272350/dorado/7.1.4/sup/simplex/pass/` .
 
+### Fluidigm genotyping
+Is stored in
+- `/seq/fluidigm/`_plate_hash_triple_`/`_plate_id_`/`_well_hash_triple`/`
+
+e.g.
+- `/seq/fluidigm/ff/d7/37/1662192080/e8/a9/9f/`
+
+and is practically only found using metadata queries.
+
+### UltimaGen and ElemBio
+
+As of February 2024, so change is quite possible, we're storing data as output by the Ulitima instrument and by the Elembio `bases2fastq` tool e.g.
+- `/seq/elembio/runs/202401/20240105_AV234003_hic_and_rnaseq_5jan/`
+- `/seq/elembio/runs/202401/20240105_AV234003_hic_and_rnaseq_5jan/Samples/Mouse_HiC/`
+- `/seq/ultimagen/runs/039/039317-20240214_0221/`
+- `/seq/ultimagen/runs/039/039317-20240214_0221/039317-s11-Z0029-CATATAGCAGGAGAT/`
 
 ## legacy hierarchies
 
