@@ -125,6 +125,13 @@ metadata do not use [OBI](http://obofoundry.org/ontology/obi.html).
 | PacBio          | `run`                                          | String           | PacBio run ID                                      | SMRT Link |
 | PacBio          | `well`                                         | String           | PacBio sample well                                 | SMRT Link |
 | PacBio          | `sample_load_name`                             | String           | PacBio sample load name                            | SMRT Link |
+| elembio         | `elembio:RunName`                              | String           | Run Name from manifest                             | CSV       |
+| elembio         | `elembio:InstrumentName`                       | String           | Identity of the Aviti                              | App       |
+| ultimagen       | `ultimagen:RunId`                              | Integer          | Six digit number identifying a run                 | App       |
+| ultimagen       | `ultimagen:LibraryPool`                        | String           | Library pool name from the lab                     | LIMS      |
+| ultimagen       | `ultimagen:Index_Barcode_Sequence`             | String           | Index read sequence, may be assigned to a sample   | LIMS      |
+| ultimagen       | `ultimagen:Index_Barcode_Num`                  | String           | Barcode (not a) number                             | App       |
+| ultimagen       | `ultimagen:application_type`                   | String           | Sequencer kit                                      | App       |
 
 Key:
 
@@ -136,32 +143,35 @@ Key:
 
 ### Secondary metadata
 
-| Platform        | Attribute                  | Type             | Definition                                                                                                                           | Source  |
-| --------------- | -------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| NA              | `dcterms:modified`         | ISO8601 datetime | Date file last modified in iRODS                                                                                                     | App     |
-| NA              | `sample_accession_number`  | String           | Public database sample accession                                                                                                     | LIMS    |
-| NA              | `sample_cohort`            | String           | Cohort from which sample was derived                                                                                                 | LIMS    |
-| NA              | `sample_common_name`       | String           | Species common name for the sample                                                                                                   | LIMS    |
-| NA              | `sample_consent_withdrawn` | Integer          | Sample consent was withdrawn                                                                                                         | LIMS    |
-| NA              | `sample_control`           | Integer          | Sample is a control                                                                                                                  | LIMS    |
-| NA              | `sample_donor_id`          | String           | Donor ID for the sample                                                                                                              | LIMS    |
-| NA              | `sample_id`                | String           | Internal sample ID                                                                                                                   | LIMS    |
-| NA              | `sample`                   | String           | Stable internal sample ID                                                                                                            | LIMS    |
-| NA              | `sample_public_name`       | String           | Public ID of the sample                                                                                                              | LIMS    |
-| NA              | `sample_supplier_name`     | String           | Sample ID provided by the researcher responsible for the sample                                                                      | LIMS    |
-| NA              | `study_accession_number`   | String           | Public database study accession                                                                                                      | LIMS    |
-| NA              | `study_id`                 | String           | Internal study ID                                                                                                                    | LIMS    |
-| NA              | `study_name`               | String           | Free text study name                                                                                                                 | LIMS    |
-| NA              | `study_title`              | String           | Free text study title                                                                                                                | LIMS    |
-| NA              | `rt_ticket`                | String           | Internal RT (helpdesk) ticket ID                                                                                                     | SOP     |
-| Illumina        | `library`                  | String           | Sequencing library name                                                                                                              | LIMS    |
-| Illumina        | `library_id`               | String           | Sequencing library ID                                                                                                                | LIMS    |
-| Illumina        | `library_type`             | String           | Sequencing library type                                                                                                              | LIMS    |
-| Illumina        | `alt_process`              | String           | Indicates output from some variation of the standard analysis                                                                        | App SOP |
-| Illumina        | `alt_target`               | String           | Analogous to `target` where an `alt_process` has been used                                                                           | App SOP |
-| PacBio          | `pacbio_library_name`      | String           | Sequencing library name                                                                                                              | LIMS    |
-| Illumina PacBio | `manual_qc`                | Integer          | If defined, the outcome of the QC assessment                                                                                         | App SOP |
-| Illumina PacBio | `target`                   | String           | Marker of key data product likely to be of interest to customer: `1` or `library` for initial product or a later library based merge | App     |
+| Platform        | Attribute                     | Type             | Definition                                                                                                                           | Source  |
+| --------------- | ----------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| NA              | `dcterms:modified`            | ISO8601 datetime | Date file last modified in iRODS                                                                                                     | App     |
+| NA              | `sample_accession_number`     | String           | Public database sample accession                                                                                                     | LIMS    |
+| NA              | `sample_cohort`               | String           | Cohort from which sample was derived                                                                                                 | LIMS    |
+| NA              | `sample_common_name`          | String           | Species common name for the sample                                                                                                   | LIMS    |
+| NA              | `sample_consent_withdrawn`    | Integer          | Sample consent was withdrawn                                                                                                         | LIMS    |
+| NA              | `sample_control`              | Integer          | Sample is a control                                                                                                                  | LIMS    |
+| NA              | `sample_donor_id`             | String           | Donor ID for the sample                                                                                                              | LIMS    |
+| NA              | `sample_id`                   | String           | Internal sample ID                                                                                                                   | LIMS    |
+| NA              | `sample`                      | String           | Stable internal sample ID                                                                                                            | LIMS    |
+| NA              | `sample_public_name`          | String           | Public ID of the sample                                                                                                              | LIMS    |
+| NA              | `sample_supplier_name`        | String           | Sample ID provided by the researcher responsible for the sample                                                                      | LIMS    |
+| NA              | `study_accession_number`      | String           | Public database study accession                                                                                                      | LIMS    |
+| NA              | `study_id`                    | String           | Internal study ID                                                                                                                    | LIMS    |
+| NA              | `study_name`                  | String           | Free text study name                                                                                                                 | LIMS    |
+| NA              | `study_title`                 | String           | Free text study title                                                                                                                | LIMS    |
+| NA              | `rt_ticket`                   | String           | Internal RT (helpdesk) ticket ID                                                                                                     | SOP     |
+| Illumina        | `library`                     | String           | Sequencing library name                                                                                                              | LIMS    |
+| Illumina        | `library_id`                  | String           | Sequencing library ID                                                                                                                | LIMS    |
+| Illumina        | `library_type`                | String           | Sequencing library type                                                                                                              | LIMS    |
+| Illumina        | `alt_process`                 | String           | Indicates output from some variation of the standard analysis                                                                        | App SOP |
+| Illumina        | `alt_target`                  | String           | Analogous to `target` where an `alt_process` has been used                                                                           | App SOP |
+| PacBio          | `pacbio_library_name`         | String           | Sequencing library name                                                                                                              | LIMS    |
+| Illumina PacBio | `manual_qc`                   | Integer          | If defined, the outcome of the QC assessment                                                                                         | App SOP |
+| Illumina PacBio | `target`                      | String           | Marker of key data product likely to be of interest to customer: `1` or `library` for initial product or a later library based merge | App     |
+| elembio         | `elembio:SampleName`          | String           | The name associated with a sample multiplexed in the run                                                                             | LIMS    |
+| ultimagen       | `ultimagen:Sample_ID`         | String           | The sample ID the instrument uses on the file system                                                                                 | App SOP |
+| ultimagen       | `ultimagen:Library_name`      | String           | Sequencing library name                                                                                                              | LIMS    |
 
 Key:
 
@@ -260,3 +270,7 @@ standard ontology, if only for interoperability (rather than inference capabilit
 We have adopted a namespace of `ont` for Oxford Nanopore Technology (ONT) metadata
 to prevent naming clashes with existing terms. This is something we probably should
 have implemented consistently from the outset, for all platforms.
+
+`elembio` is reserved for Element Biosciences instruments including the Aviti
+
+`ultimagen` is reserved for Ultima Genomics UG100
