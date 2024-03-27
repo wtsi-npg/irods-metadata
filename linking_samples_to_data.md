@@ -19,7 +19,7 @@
 
 # iRODS
 
-[iRODS](https://irods.org) is the main platform the we use at WSI to enable the 
+[iRODS](https://irods.org) is the main platform the NPG use at WSI to enable the 
 distribution of DNAP data products to researchers. It provides access control, data
 virtualisation, data replication and metadata services:
 
@@ -30,6 +30,97 @@ virtualisation, data replication and metadata services:
   sites to guard against loss.
 - Metadata: to record the identity and origin of data for discovery and management. 
 
+# iRODS locations
+
+NPG recommends you find your data in iRODS using metadata and/or the MLWH database when pragmatic.
+
+Data products from recent platforms are placed in a hierarchy split by manufacturer closest to the root. i.e.
+
+- `/seq/illumina` for _Illumina_ (sequencing)
+- `/seq/pacbio` for _Pacific Biosciences_: _PacBio_ (sequencing)
+- `/seq/ont` for _Oxford Nanopore Technology_: _ONT_ (sequencing)
+- `/seq/fluidigm` for _Fluidigm_ (genotyping)
+- `/seq/elembio` for _Element Biosciences_: _ElemBio_ (sequencing)
+- `/seq/ultimagen` for _Ulitma Genomics_: _UltimaGen_ (sequencing) 
+
+## run, further processing and data product hierarchies
+
+For the newest platforms (`ont`, `elembio`, `ultimagen`) we try to reflect/maintain hierarchy of the data as output by the instrument or by the manufacturer's software.
+
+Where possible we try to use only automatically generated metadata in the hierarchies i.e. data which is unlikely to be wrong due to inevitable human errors.
+
+Don't expect absolute consistency! We've changed as new platforms have made new demands and as NPG has learnt lessons...
+
+### Illumina
+NovaSeq and later instruments have the default NPG processing data products in separate collections where the path describes the lanes and plexes:
+- `/seq/illumina/runs/`_thousands_elements_of_NPG_id_run_`/`_NPG_id_run_`/lane`_flowcell_lane_number(s)_`/plex`_Sequencescape_tag_index_`/` , or
+- if all lanes are merged `/seq/illumina/runs/`_thousands_elements_of_NPG_id_run_`/`_NPG_id_run_`/plex`_Sequencescape_tag_index_`/` 
+
+e.g.
+- `/seq/illumina/runs/48/48468/lane1/plex10/` per-lane and per-plex
+- `/seq/illumina/runs/48/48461/plex85/` all-lanes-merged and per-plex
+- `/seq/illumina/runs/48/48454/lane7-8/plex2/` lane-subset-merge, per-plex
+
+If the NPG pipeline is run with alterntive parameters _and_ the result saved to iRODS _as well as_ (rather than replacing) the origin processing output, another "`alt_process`" layer is added e.g. `/seq/illumina/runs/48/48367/lane2/plex10/bowtie2_kraken2_T2T/`
+
+Other pipelines output are stored at the same level as `runs/` 
+- `/seq/illumina/`_analysis_pipeline_`/`_id_for_that_instance_of_pipeline_`/` for (typically single cell) data from multiple runs,
+
+or in a per data product, per analysis pipeline and version hierarchy:
+- `/seq/illumina/pp/runs/`_per_product_hierarchy_from_above_`/`_analysis_pipeline_`/`_pipeline_version_`/`
+
+or within the indiviual run 
+- `/seq/illumina/runs/`_thousands_elements_of_NPG_id_run_`/`_NPG_id_run_`/`_analysis_pipeline_`/`:
+
+e.g.
+- `/seq/illumina/cellranger-arc/cellranger-arc202_count_fd5ca7f373cdfbc381c221b2115ebbe8/`
+- `/seq/illumina/pp/runs/48/48445/lane2/plex7/ncov2019_artic_nf/v1.3.0_wsi2.0/` 
+- `/seq/illumina/runs/48/48297/cellranger/cellranger720_count_48297_HCA_BSTOP_RNA14593660_GRCh38-2020-A/`
+
+### PacBio
+Is stored in
+- `/seq/pacbio/`_run_identifier_`/`_SMRT_well_`/`
+
+e.g.
+- `/seq/pacbio/r84098_20240216_103750/1_C01/`
+
+### ONT
+Data is copied directly off instruments into iRODS into `/seq/ont/`_instrument_type_`/`_instrument_name_`/`_hierarchy_from_instrument_`/` e.g.
+- `/seq/ont/promethion/PC24B148/ONTRUN-197/TRAC-2-7701/20240219_1444_2E_PAU53948_979fa814/fastq_pass/`
+- `/seq/ont/promethion/PC24B148/ONTRUN-197/TRAC-2-7701/20240219_1444_2E_PAU53948_979fa814/pod5_pass/`
+
+Offline basecalled and deplexing data goes into _similar_ hierarchies split at the `/`_instrument_name_`/` level i.e.
+- `/seq/ont/`_instrument_type_`/offline-basecalls/`_instrument_name_`/`_enhanced_hierarchy_from_instrument_`/` and
+- `/seq/ont/`_instrument_type_`/offline-deplexes/`_instrument_name_`/`_enhanced_hierarchy_from_instrument_`/`
+
+e.g. `/seq/ont/promethion/offline-basecalls/PC24B148/ONTRUN-188/TRAC-2-7230/20240103_1539_3G_PAQ63575_f4272350/dorado/7.1.4/sup/simplex/pass/` .
+
+### Fluidigm genotyping
+Is stored in
+- `/seq/fluidigm/`_plate_hash_triplet_`/`_plate_id_`/`_well_hash_triplet`/`
+
+e.g.
+- `/seq/fluidigm/ff/d7/37/1662192080/e8/a9/9f/`
+
+and is practically only found using metadata queries.
+
+### UltimaGen and ElemBio
+
+As of February 2024, so change is quite possible, we're storing data as output by the Ulitima instrument and by the Elembio `bases2fastq` tool e.g.
+- `/seq/elembio/runs/202401/20240105_AV234003_hic_and_rnaseq_5jan/`
+- `/seq/elembio/runs/202401/20240105_AV234003_hic_and_rnaseq_5jan/Samples/Mouse_HiC/`
+- `/seq/ultimagen/runs/039/039317-20240214_0221/`
+- `/seq/ultimagen/runs/039/039317-20240214_0221/039317-s11-Z0029-CATATAGCAGGAGAT/`
+
+## legacy hierarchies
+
+Pre-NovaSeq Illumina instruments have their data stored in a higher and flat hierarchy in `/seq/` e.g.
+- `/seq/48462/48462_1#9.cram`
+- `/seq/48462/RunInfo.xml`
+- `/seq/48462/qc/48462_1#9.ref_match.json`
+
+Illumina Beadarray (Infinium) and Sequenom genotyping platforms have their data stored in `/archive` zone (rather than `/seq`) 
+- `/archive/GAPI/gen/infinium` for Illumina Beadarray: Infinium
 
 # iRODS metadata
 

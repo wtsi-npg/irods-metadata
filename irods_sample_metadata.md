@@ -125,9 +125,14 @@ metadata do not use [OBI](http://obofoundry.org/ontology/obi.html).
 | PacBio          | `run`                                          | String           | PacBio run ID                                      | SMRT Link |
 | PacBio          | `well`                                         | String           | PacBio sample well                                 | SMRT Link |
 | PacBio          | `sample_load_name`                             | String           | PacBio sample load name                            | SMRT Link |
+| elembio         | `elembio:RunName`                              | String           | Run Name from manifest                             | CSV       |
+| elembio         | `elembio:InstrumentName`                       | String           | Identity of the Aviti                              | App       |
+| ultimagen       | `ultimagen:RunId`                              | Integer          | Six digit number identifying a run                 | App       |
+| ultimagen       | `ultimagen:Index_Barcode_Sequence`             | String           | Index read sequence, may be assigned to a sample   | LIMS      |
+| ultimagen       | `ultimagen:Index_Barcode_Num`                  | String           | Barcode (not a) number                             | App       |
+| ultimagen       | `ultimagen:application_type`                   | String           | Sequencer kit                                      | App       |
 | 10x             | `10x:reference`                                | String           | 10X reference                                      | App       |
 | 10x             | `10x:pipeline`                                 | String           | 10X pipeline e.g. cellranger count                 | App       |
-
 
 Key:
 
@@ -165,6 +170,10 @@ Key:
 | PacBio          | `pacbio_library_name`      | String           | Sequencing library name                                                                                                              | LIMS    |
 | Illumina PacBio | `manual_qc`                | Integer          | If defined, the outcome of the QC assessment                                                                                         | App SOP |
 | Illumina PacBio | `target`                   | String           | Marker of key data product likely to be of interest to customer: `1` or `library` for initial product or a later library based merge | App     |
+| elembio         | `elembio:SampleName`       | String           | The name associated with a sample multiplexed in the run                                                                             | LIMS    |
+| ultimagen       | `ultimagen:Sample_ID`      | String           | The sample ID the instrument uses on the file system                                                                                 | App SOP |
+| ultimagen       | `ultimagen:Library_name`   | String           | Sequencing library name                                                                                                              | LIMS    |
+| ultimagen       | `ultimagen:LibraryPool`    | String           | Library pool name from the lab                                                                                                       | LIMS    |
 
 Key:
 
@@ -263,3 +272,7 @@ standard ontology, if only for interoperability (rather than inference capabilit
 We have adopted a namespace of `ont` for Oxford Nanopore Technology (ONT) metadata
 to prevent naming clashes with existing terms. This is something we probably should
 have implemented consistently from the outset, for all platforms.
+
+`elembio` is reserved for Element Biosciences instruments including the Aviti
+
+`ultimagen` is reserved for Ultima Genomics UG100
