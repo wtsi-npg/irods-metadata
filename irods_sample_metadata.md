@@ -125,6 +125,9 @@ metadata do not use [OBI](http://obofoundry.org/ontology/obi.html).
 | PacBio          | `run`                                          | String           | PacBio run ID                                      | SMRT Link |
 | PacBio          | `well`                                         | String           | PacBio sample well                                 | SMRT Link |
 | PacBio          | `sample_load_name`                             | String           | PacBio sample load name                            | SMRT Link |
+| 10x             | `10x:reference`                                | String           | 10X reference                                      | App       |
+| 10x             | `10x:pipeline`                                 | String           | 10X pipeline e.g. cellranger count                 | App       |
+
 
 Key:
 
