@@ -131,6 +131,8 @@ metadata do not use [OBI](http://obofoundry.org/ontology/obi.html).
 | ultimagen       | `ultimagen:Index_Barcode_Sequence`             | String           | Index read sequence, may be assigned to a sample   | LIMS      |
 | ultimagen       | `ultimagen:Index_Barcode_Num`                  | String           | Barcode (not a) number                             | App       |
 | ultimagen       | `ultimagen:application_type`                   | String           | Sequencer kit                                      | App       |
+| 10x             | `10x:reference`                                | String           | 10X reference                                      | App       |
+| 10x             | `10x:pipeline`                                 | String           | 10X pipeline e.g. cellranger count                 | App       |
 
 Key:
 
