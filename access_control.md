@@ -61,19 +61,50 @@ ticket to new-seq-pipe@sanger.ac.uk.
 
 ## Troubleshooting
 
-If you have no iRODS account, or your username is not explicitly listed and
-you are not a member of the Unix groups listed, then in order to gain access
-you will need to: 
-- ensure you have an iRODS account. Email servicedesk@sanger.ac.uk to request
-one if required.
+If you cannot access your data, and your username is not explicitly listed in 
+the "data access group" details, you should confirm if you are a member of one
+of the Unix groups in the data access group associated with the study. To find
+out if you are a member of a Unix group you can use the following command to
+display all Unix groups associated with your username: `groups <username>`.
+Note that Unix groups need to match exactly, for example team999 in UNIX is
+not equivalent to t999. 
+
+If the above command returns the prompt `no such user`, you should confirm you
+are checking the correct username.
+
+If there are no Unix groups listed in a sequencing study's data access group,
+the access should be open to all iRODS users.
+
+If the access is open or your user should be allowed you should check for a
+corresponding iRODS account. 
+
+This can be achieved using the following command with your username:
+`iquest --no-page -z seq "group member: %s" "select USER_NAME where USER_GROUP_NAME = 'public'" | grep <username>`.
+This will search the public group for your username, as you are automatically
+added to the public group when your iRODS account is created. If it finds your
+username it will return with the output `group member <username>`, confirming
+that you have an iRODS account. If you yourself do not have an iRODS account
+(and so no configuration to use it) there will be an error e.g.
+`ERROR: _rcConnect: setRhostInfo error, IRODS_HOST is probably not set correctly`
+
+You will also receive an error if you do have an iRODS account but are not
+logged in to iRODS. Use `iinit` to login.
+
+If you have an iRODS account but are testing for another account and the above
+command has no output then there is no iRODS account corresponding to that other
+account.
+
+If you do not have an iRODS account, or your username is not explicitly listed
+and you are not a member of the Unix groups listed in the study details, then
+in order to gain access you will need to: 
+- Email servicedesk@sanger.ac.uk to request an iRODS account if required
 
 and either:
-- request your addition to one of the Unix groups listed: email
-servicedesk@sanger.ac.uk (ideally CC'ing the relevant person responsible for
-the group membership), or
+- request your addition to one of the Unix groups listed in the study's data
+access group: email servicedesk@sanger.ac.uk (ideally CC'ing the relevant person
+responsible for the Unix group membership), or
 - request the relevant
 [SSR](https://fred.wellcomegenomecampus.org/page/5317?SearchId=2458147)
 to amend the "data access group" to include your username or a relevant Unix
 group of which you are a member (ideally CC'ing the relevant person responsible
-for the data access for the study, e.g. the PI). Note that UNIX groups need to
-match exactly, for example team999 in UNIX is not equivalent to t999.
+for the data access for the study, e.g. the PI).
