@@ -34,6 +34,13 @@ beadarray, the iRODS group will be left empty (except for the iRODS groupadmin
 user). This means public access will be unavailable until the
 "data_access_group" is changed.
 
+When 'no_access_granted' is entered as the only data_access_group for a study
+only members of default DNAP access groups will be able to access the
+relevant protected data. This is useful when users with a right to access the 
+protected data are unknown but due to the nature of the samples the data_access_group
+should not be left empty. No unix group should ever be created with the name
+'no_access_granted'.
+
 The "data_access_group" in Sequencescape studies is normally edited by the DNAP
 [SSR](https://fred.wellcomegenomecampus.org/page/5317?SearchId=2458147) team.
 
@@ -97,7 +104,8 @@ account.
 If you do not have an iRODS account, or your username is not explicitly listed
 and you are not a member of the Unix groups listed in the study details, then
 in order to gain access you will need to: 
-- Email servicedesk@sanger.ac.uk to request an iRODS account if required
+- Submit a ticket to Freshservice via the Okta [app](https://sanger.okta.com/)
+to request an iRODS account if required
 
 and either:
 - request your addition to one of the Unix groups listed in the study's data
