@@ -27,12 +27,11 @@ access to the study's data if they are a member of one of the Unix groups or
 are explicitly included in the list.
 
 When the data_access_group on a study is left empty:
-- if the study is associated with sequencing, the members of the iRODS group
-will be set to the public group
-- if the study is not associated with sequencing, e.g. old Illumina
-beadarray, the iRODS group will be left empty (except for the iRODS groupadmin
-user). This means public access will be unavailable until the
-"data_access_group" is changed.
+- if the study doesn't have a data release type of managed the members of the 
+iRODS group will be set to the public group, else
+- if the study has a data release type of managed the iRODS group will be left
+empty (except for the iRODS groupadmin user). This means public access will be
+unavailable until the "data_access_group" is changed.
 
 When 'no_access_granted' is entered as the only data_access_group for a study
 only members of default DNAP access groups will be able to access the
