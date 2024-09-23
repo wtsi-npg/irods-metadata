@@ -21,7 +21,7 @@
 
 Access to data in iRODS is determined on a per-Sequencescape-study basis.
 
-The Sequencescape study attribute "data access group" can be set to contain a
+The Sequencescape study attribute "Data Access Group" can be set to contain a
 space separated list of Unix groups and usernames. A user will be granted
 access to the study's data if they are a member of one of the Unix groups or
 are explicitly included in the list.
@@ -46,8 +46,8 @@ The "data_access_group" in Sequencescape studies is normally edited by the DNAP
 ### Special "ss_" iRODS groups
 
 There can be a large number of files in iRODS which belong to a particular
-study. To allow fast updating of the access to these files when the "data
-access group" or constituent Unix group membership changes, a separate iRODS
+study. To allow fast updating of the access to these files when the "Data
+Access Group" or constituent Unix group membership changes, a separate iRODS
 access control group is created for each Sequencescape study, called 
 `ss_<study_id>`. This is used on the files to grant access. These groups are
 checked automatically several times per day to ensure they reflect current
@@ -60,9 +60,8 @@ material. When processed to try to separate human contamination from the residue
 "target" data, the normal study group is used to allow access to the target data,
 but an `ss_<study_id>_human` iRODS group is created and used for access to the
 likely human contamination data. Membership of these special iRODS groups is
-not automatic and so the data is not normally accessible. Although not currently
-in the LIMS, requests for access are tracked in an audit-able manner by an RT
-ticket to new-seq-pipe@sanger.ac.uk.
+also automatic and based on the "Contaminated Human Data Access Group" in a
+similar manner to the above access control but defaulting to no access if empty.
 
 
 ## Troubleshooting
@@ -108,7 +107,7 @@ to request an iRODS account if required
 
 and either:
 - request your addition to one of the Unix groups listed in the study's data
-access group: email servicedesk@sanger.ac.uk (ideally CC'ing the relevant person
+access group: submit a Freshservice request (ideally CC'ing the relevant person
 responsible for the Unix group membership), or
 - request the relevant
 [SSR](https://fred.wellcomegenomecampus.org/page/5317?SearchId=2458147)
