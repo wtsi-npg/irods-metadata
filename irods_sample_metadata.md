@@ -154,11 +154,11 @@ Key:
 | NA              | `sample_control`           | Integer          | Sample is a control                                                                                                                  | LIMS    |
 | NA              | `sample_donor_id`          | String           | Donor ID for the sample                                                                                                              | LIMS    |
 | NA              | `sample_id`                | String           | Internal sample ID                                                                                                                   | LIMS    |
-| NA              | `sample_lims`              | String           | LIMS identifier where the sample was registered                                                                                                            | LIMS    |
+| NA              | `sample_lims`              | String           | LIMS identifier where the sample was registered                                                                                      | LIMS    |
 | NA              | `sample`                   | String           | Stable internal sample ID                                                                                                            | LIMS    |
 | NA              | `sample_public_name`       | String           | Public ID of the sample                                                                                                              | LIMS    |
 | NA              | `sample_supplier_name`     | String           | Sample ID provided by the researcher responsible for the sample                                                                      | LIMS    |
-| NA              | `sample_uuid`              | String           | LIMS-specific UUID for a sample                                                                      | LIMS    |
+| NA              | `sample_uuid`              | String           | LIMS-specific UUID for a sample                                                                                                      | LIMS    |
 | NA              | `study_accession_number`   | String           | Public database study accession                                                                                                      | LIMS    |
 | NA              | `study_id`                 | String           | Internal study ID                                                                                                                    | LIMS    |
 | NA              | `study_name`               | String           | Free text study name                                                                                                                 | LIMS    |
