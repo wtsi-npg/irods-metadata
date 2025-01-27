@@ -31,9 +31,9 @@ mark-job:
       - |
         apt-get update -yq
         apt-get install -yq wget
-        wget $MARK_RELEASE
-        echo "$MARK_SHASUM  $MARK_ARCHIVE" | sha256sum -c
-        tar -xzf $MARK_ARCHIVE mark
+        wget "${MARK_RELEASE}" -O "${MARK_ARCHIVE}"
+        echo "${MARK_SHASUM}  ${MARK_ARCHIVE}" | sha256sum -c
+        tar -xzf "${MARK_ARCHIVE}" mark
     script: >
         for f in $(find . -name includes -type d -prune -o -name README.md -prune -o -name '*.md' -print0 | xargs -0); do
           echo 'username = ""' && echo "password = '$CONFLUENCE_PERSONAL_ACCESS_TOKEN'" | 
