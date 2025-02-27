@@ -100,6 +100,7 @@ metadata do not use [OBI](http://obofoundry.org/ontology/obi.html).
 | NA              | `is_paired_read`                               | Integer          | Is paired-end sequencing                           | App       |
 | NA              | [`alignment`](#NPGiRODSmetadata-alignment)     | Integer          | Is aligned to a reference                          | App       |
 | NA              | [`alignment_filter`]                           | String           | The filter (if any) used to generate this data     | App       |
+| NA              | [`dehumanised`](#NPGiRODSmetadata-dehumanised) | String           | Identifier for human reads removal process         | App       |
 | NA              | `total_reads`                                  | Integer          | Total number of reads sequenced                    | App       |
 | Illumina        | `id_run`                                       | Integer          | Illumina run ID                                    | App       |
 | Illumina        | `lane`                                         | Integer          | Illumina flowcell lane                             | App       |
@@ -218,6 +219,14 @@ namespace](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#htt
 
 The range of `dcterms:publisher` should be the publishing agent, such as a software
 agent, service account or user.
+
+### dehumanised
+
+Defined for target data products from which reads identified as belonging to
+Human reference were removed by NPG production pipeline. The value is an
+identifier of a particular process, which was used to remove these reads. The
+fallback value is `unknown`. `unknown` is assigned when human reads were removed,
+but no information about the process of removal is available.
 
 ### id_product
 
