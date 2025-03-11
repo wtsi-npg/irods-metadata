@@ -222,11 +222,31 @@ agent, service account or user.
 
 ### dehumanised
 
-Defined for target data products from which reads identified as belonging to
-Human reference were removed by NPG production pipeline. The value is an
-identifier of a particular process, which was used to remove these reads. The
-fallback value is `unknown`. `unknown` is assigned when human reads were removed,
-but no information about the process of removal is available.
+Defined for:
+- target data products from which reads identified as belonging to Homo Sapiens
+reference were removed by NPG production pipeline,
+- data products that contain these removed from the target file reads.
+
+For latter products the value is an identifier of a particular method, which
+was used to remove human reads. For target data the value is `see_human` as an
+instruction to look up the definition assigned to split-out data.
+
+The value is computed by examining the header of BAM/CRAM files. At the moment
+(March 2025) it is not possible to identify the method used for human reads
+removal by looking at the headers of the target files.
+
+Possible values for split-out human reads:
+
+1. `npg2010` very old 2010-2018 method, did not use `bambi select`, adapters
+clipped;
+2. `npg2010nc` as (1), but no adapter clipping;
+3. `npg2018` 2018-spring 2025 method, used `bambi select` and `bwa aln` with
+`GRCh37`,
+4. `npg2018nc` as (3), but no adapter clipping;
+5. `npg2025` new method, uses a combination of `bambi select` and
+`bowtie2 T2T very-sensitive-local`;
+6. `unknown` - a fallback value. `unknown` is assigned when human reads were
+removed, but no information about the process of removal is available.
 
 ### id_product
 
