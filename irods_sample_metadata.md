@@ -100,6 +100,7 @@ metadata do not use [OBI](http://obofoundry.org/ontology/obi.html).
 | NA              | `is_paired_read`                               | Integer          | Is paired-end sequencing                           | App       |
 | NA              | [`alignment`](#NPGiRODSmetadata-alignment)     | Integer          | Is aligned to a reference                          | App       |
 | NA              | [`alignment_filter`]                           | String           | The filter (if any) used to generate this data     | App       |
+| NA              | [`dehumanised`](#NPGiRODSmetadata-dehumanised) | String           | Identifier for human reads removal process         | App       |
 | NA              | `total_reads`                                  | Integer          | Total number of reads sequenced                    | App       |
 | Illumina        | `id_run`                                       | Integer          | Illumina run ID                                    | App       |
 | Illumina        | `lane`                                         | Integer          | Illumina flowcell lane                             | App       |
@@ -218,6 +219,34 @@ namespace](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#htt
 
 The range of `dcterms:publisher` should be the publishing agent, such as a software
 agent, service account or user.
+
+### dehumanised
+
+Defined for:
+- target data products from which reads identified as belonging to Homo Sapiens
+reference were removed by NPG production pipeline,
+- data products that contain these removed from the target file reads.
+
+For latter products the value is an identifier of a particular method, which
+was used to remove human reads. For target data the value is `see_human` as an
+instruction to look up the definition assigned to split-out data.
+
+The value is computed by examining the header of BAM/CRAM files. At the moment
+(March 2025) it is not possible to identify the method used for human reads
+removal by looking at the headers of the target files.
+
+Possible values for split-out human reads:
+
+1. `npg2010` very old 2010-2018 method, did not use `bambi select`, adapters
+clipped;
+2. `npg2010nc` as (1), but no adapter clipping;
+3. `npg2018` 2018-spring 2025 method, used `bambi select` and `bwa aln` with
+`GRCh37`,
+4. `npg2018nc` as (3), but no adapter clipping;
+5. `npg2025` new method, uses a combination of `bambi select` and
+`bowtie2 T2T very-sensitive-local`;
+6. `unknown` - a fallback value. `unknown` is assigned when human reads were
+removed, but no information about the process of removal is available.
 
 ### id_product
 
