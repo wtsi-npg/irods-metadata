@@ -17,6 +17,13 @@
 
 # NPG iRODS data access
 
+## Overview
+
+| Data Type         | Access                                                                                                                                                                                                                                                                                              |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sample data       | Users associated with a study, where a sample can be unambiguously associated with a study<br><br>Defaults to no access if no corresponding access can be calculated<br><br>Ambiguous sample-level data defaults to no access (except Illumina which has different tag 0 logic (TODO: What is this) |
+| QC/run level data | Default to open access                                                                                                                                                                                                                                                                              |
+
 ## Access to data through "data_access_group" in Sequencescape
 
 Access to data in iRODS is determined on a per-Sequencescape-study basis.
@@ -63,6 +70,22 @@ likely human contamination data. Membership of these special iRODS groups is
 also automatic and based on the "Contaminated Human Data Access Group" in a
 similar manner to the above access control but defaulting to no access if empty.
 
+### Collection permissions
+
+Any user can list any collection in the Sanger production environment.
+
+Whilst read permissions can be set on collections, they are not enforced in the Sanger
+production environment as the iRODS setting "StrictACL" is not enabled.
+
+Due to read permissions not having an effect, we do not make any guarantees
+about what read permissions are set on collections.
+
+References:
+
+- Appendix > Demonstrating non-strict ACL behaviour
+- https://ssg-confluence.internal.sanger.ac.uk/spaces/FARM/pages/101362569/iRODS
+- https://gitlab.internal.sanger.ac.uk/configuration-management/ansible/-/blob/master/roles/irods/sanger.irods.41x_support/templates/sanger1.re#L63
+- https://docs.irods.org/4.2.7/system_overview/users_and_permissions/#strictacl
 
 ## Troubleshooting
 
@@ -114,3 +137,49 @@ responsible for the Unix group membership), or
 to amend the "data access group" to include your username or a relevant Unix
 group of which you are a member (ideally CC'ing the relevant person responsible
 for the data access for the study, e.g. the PI).
+
+## Appendix
+
+### Demonstrating non-strict ACL behaviour
+
+Can list `/Sanger1`
+
+```sh
+ils -Ar /Sanger1
+```
+
+Can list `/seq`
+
+```
+ils -Ar /seq
+```
+
+In depth example
+
+```sh
+# Arrange
+(echo a; date) > a.txt; (echo b; date) > b.txt; (echo c; date) > c.txt
+imkdir /Sanger1/home/$USER/test_collection_permissions
+iput a.txt /Sanger1/home/$USER/test_collection_permissions
+iput b.txt /Sanger1/home/$USER/test_collection_permissions
+ils -Ar /Sanger1/home/$USER/test_collection_permissions
+ichmod null $USER /Sanger1/home/$USER/test_collection_permissions
+ichmod null $USER /Sanger1/home/$USER/test_collection_permissions/b.txt
+
+# You can still list collection that you don't have read permissions for
+ils -Ar /Sanger1/home/$USER/test_collection_permissions
+
+# You can view an object you own and edit
+iget /Sanger1/home/$USER/test_collection_permissions/a.txt -
+(echo a; date) > a.txt
+iput --force a.txt /Sanger1/home/$USER/test_collection_permissions
+iget /Sanger1/home/$USER/test_collection_permissions/a.txt -
+
+# You can not view an object you don't own or edit
+iget /Sanger1/home/$USER/test_collection_permissions/b.txt -
+iput --force b.txt /Sanger1/home/$USER/test_collection_permissions
+
+# You cannot add new objects
+iput c.txt /Sanger1/home/$USER/test_collection_permissions
+iput --force c.txt /Sanger1/home/$USER/test_collection_permissions
+```
