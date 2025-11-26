@@ -21,7 +21,7 @@
 
 | Data Type         | Access                                                                                                                                                                                                                                                                                              |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Sample data       | Users associated with a study, where a sample can be unambiguously associated with a study<br><br>Defaults to no access if no corresponding access can be calculated<br><br>Ambiguous sample-level data defaults to no access (except Illumina which has different tag 0 logic |
+| Sample data       | Users associated with a study, where a sample can be unambiguously associated with a study<br><br>Defaults to no access if no corresponding access can be calculated<br><br>Ambiguous sample-level data defaults to no access (except Illumina which has different tag 0 logic) |
 | QC/run level data | Default to open access                                                                                                                                                                                                                                                                              |
 
 ## Access to data through "data_access_group" in Sequencescape
