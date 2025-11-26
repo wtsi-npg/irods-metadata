@@ -182,4 +182,11 @@ iput --force b.txt /Sanger1/home/$USER/test_collection_permissions
 # You cannot add new objects
 iput c.txt /Sanger1/home/$USER/test_collection_permissions
 iput --force c.txt /Sanger1/home/$USER/test_collection_permissions
+
+# Tidy up
+ichmod own $USER /Sanger1/home/$USER/test_collection_permissions
+ichmod own $USER /Sanger1/home/$USER/test_collection_permissions/b.txt
+irm /Sanger1/home/$USER/test_collection_permissions/a.txt
+irm /Sanger1/home/$USER/test_collection_permissions/b.txt
+irmdir /Sanger1/home/$USER/test_collection_permissions
 ```
