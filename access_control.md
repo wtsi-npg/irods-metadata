@@ -75,13 +75,16 @@ similar manner to the above access control but defaulting to no access if empty.
 Any user can list any collection in the Sanger production environment.
 
 Whilst read permissions can be set on collections, they are not enforced in the Sanger
-production environment as the iRODS setting "StrictACL" is not enabled.
+production environment as the iRODS setting "StrictACL" is not enabled. We use "Strict"
+ACL rather than "Strict" ACL policy. Whether or not users can download a data object
+is controlled by the read permissions on the data object not parent collections.
 
-Due to read permissions not having an effect, we do not make any guarantees
+Due to collection read permissions not having an effect, we do not make any guarantees
 about what read permissions are set on collections.
 
 References:
 
+- Appendix > Standard vs Strict ACLs
 - Appendix > Demonstrating non-strict ACL behaviour
 - https://ssg-confluence.internal.sanger.ac.uk/spaces/FARM/pages/101362569/iRODS
 - https://gitlab.internal.sanger.ac.uk/configuration-management/ansible/-/blob/master/roles/irods/sanger.irods.41x_support/templates/sanger1.re#L63
@@ -139,6 +142,21 @@ group of which you are a member (ideally CC'ing the relevant person responsible
 for the data access for the study, e.g. the PI).
 
 ## Appendix
+
+### Standard vs Strict ACLs
+
+> There are two types of policies which can be applied to ACL's in iRODS.
+
+> - Standard
+>      - This allows all rodsusers to
+>           - List collections/dataobjects of other rodsusers
+>           - Access metadata on collections/dataobjects of other rodsusers
+> - Strict
+>      - rodsusers can only List or access metadata if they have at-least read permissions on collections/dataobjects.
+
+> We use Standard ACL's in production which allows all users to list collections and access metadata.
+
+Source: [ISG, 26/11/2025](https://gitlab.internal.sanger.ac.uk/npg/irods-metadata/-/merge_requests/27#note_408420)
 
 ### Demonstrating non-strict ACL behaviour
 
