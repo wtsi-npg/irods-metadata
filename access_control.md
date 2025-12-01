@@ -75,7 +75,7 @@ similar manner to the above access control but defaulting to no access if empty.
 Any user can list any collection in the Sanger production environment.
 
 Whilst read permissions can be set on collections, they are not enforced in the Sanger
-production environment as the iRODS setting "StrictACL" is not enabled. We use "Strict"
+production environment as the iRODS setting "StrictACL" is not enabled. We use "Standard"
 ACL rather than "Strict" ACL policy. Whether or not users can download a data object
 is controlled by the read permissions on the data object not parent collections.
 
