@@ -170,6 +170,7 @@ Key:
 | Illumina        | `library_type`             | String           | Sequencing library type                                                                                                              | LIMS    |
 | Illumina        | `alt_process`              | String           | Indicates output from some variation of the standard analysis                                                                        | App SOP |
 | Illumina        | `alt_target`               | String           | Analogous to `target` where an `alt_process` has been used                                                                           | App SOP |
+| Illumina        | `container `               | String           | Version of Docker image used for P4 reanalysis                                                                           | App SOP |
 | PacBio          | `pacbio_library_name`      | String           | Sequencing library name                                                                                                              | LIMS    |
 | Illumina PacBio | `manual_qc`                | Integer          | If defined, the outcome of the QC assessment                                                                                         | App SOP |
 | Illumina PacBio | `target`                   | String           | Marker of key data product likely to be of interest to customer: `1` or `library` for initial product or a later library based merge | App     |
