@@ -37,7 +37,7 @@ multiple sample identifiers in its metadata.
 ### Primary metadata
 
 Metadata that cannot be changed without becoming invalid we define as "Primary". These
-values are often intrinsic to raw or early processed data and may be obtained directly
+values are often intrinsic to data and may be obtained directly
 from there. Example primary metadata are:
 
 - The instrument used to process the material e.g. a DNA sequencer identifier, serial
@@ -107,6 +107,7 @@ metadata do not use [OBI](http://obofoundry.org/ontology/obi.html).
 | Illumina        | `tag_index`                                    | Integer          | Illumina multiplexing tag index                    | App       |
 | Illumina        | [`component`](#NPGiRODSmetadata-component)     | JSON             | JSON document describing a unit of sequence data   | App       |
 | Illumina        | [`composition`](#NPGiRODSmetadata-composition) | JSON             | JSON document describing a mixture of `component`s | App       |
+| Illumina        | `container `                                   | String           | Version of Docker image used for P4 reanalysis     | App SOP   |
 | ONT             | `ont:device_id`                                | String           | Device ID                                          | MinKNOW   |
 | ONT             | `ont:device_type`                              | String           | Device type                                        | MinKNOW   |
 | ONT             | `ont:distribution_version`                     | String           | Distribution (i.e. software) version               | MinKNOW   |
