@@ -37,7 +37,7 @@ multiple sample identifiers in its metadata.
 ### Primary metadata
 
 Metadata that cannot be changed without becoming invalid we define as "Primary". These
-values are often intrinsic to raw or early processed data and may be obtained directly
+values are often intrinsic to data and may be obtained directly
 from there. Example primary metadata are:
 
 - The instrument used to process the material e.g. a DNA sequencer identifier, serial
@@ -107,6 +107,7 @@ metadata do not use [OBI](http://obofoundry.org/ontology/obi.html).
 | Illumina        | `tag_index`                                    | Integer          | Illumina multiplexing tag index                    | App       |
 | Illumina        | [`component`](#NPGiRODSmetadata-component)     | JSON             | JSON document describing a unit of sequence data   | App       |
 | Illumina        | [`composition`](#NPGiRODSmetadata-composition) | JSON             | JSON document describing a mixture of `component`s | App       |
+| Illumina        | `container `                                   | String           | Version of Docker image used for P4 reanalysis     | App SOP   |
 | ONT             | `ont:device_id`                                | String           | Device ID                                          | MinKNOW   |
 | ONT             | `ont:device_type`                              | String           | Device type                                        | MinKNOW   |
 | ONT             | `ont:distribution_version`                     | String           | Distribution (i.e. software) version               | MinKNOW   |
@@ -170,7 +171,6 @@ Key:
 | Illumina        | `library_type`             | String           | Sequencing library type                                                                                                              | LIMS    |
 | Illumina        | `alt_process`              | String           | Indicates output from some variation of the standard analysis                                                                        | App SOP |
 | Illumina        | `alt_target`               | String           | Analogous to `target` where an `alt_process` has been used                                                                           | App SOP |
-| Illumina        | `container `               | String           | Version of Docker image used for P4 reanalysis                                                                           | App SOP |
 | PacBio          | `pacbio_library_name`      | String           | Sequencing library name                                                                                                              | LIMS    |
 | Illumina PacBio | `manual_qc`                | Integer          | If defined, the outcome of the QC assessment                                                                                         | App SOP |
 | Illumina PacBio | `target`                   | String           | Marker of key data product likely to be of interest to customer: `1` or `library` for initial product or a later library based merge | App     |
